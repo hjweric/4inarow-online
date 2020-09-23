@@ -16,7 +16,8 @@ contact_email_on_error = hartleylab@nyu.edu
 allow_repeats = true
 
 [Database Parameters]
-database_url = sqlite:///participants.db
+database_url = postgres://nleamveitqbtwy:f69fe56265a6b8ff29ad3fbaa37e29ebc6e55aa12672bcad4e91ff4287f9a181@ec2-50-16-221-180.compute-1.amazonaws.com:5432/dbf4mdse4nase
+
 table_name = 4inarow
 
 [Server Parameters]
@@ -51,5 +52,6 @@ persistent_history_file = .psiturk_history
 #
 #   https://<host>:<port>/ad 
 
-use_psiturk_ad_server = true
-ad_location = false
+use_psiturk_ad_server = false
+ad_location = https://four-in-a-row-dpm.herokuapp.com/pub
+
