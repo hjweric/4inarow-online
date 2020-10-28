@@ -35,15 +35,17 @@ function saveData() {
 
 $(window).on('load', function() {
 	psiturk.recordUnstructuredData('start', String(new Date()));
+	psiturk.recordUnstructuredData('params', PARAMS);
 	return saveData()
-	.then(() => setTimeout(() => {
-		initialize_task(10);
-		// PsiTurk considers a participant hasn't started until they have finished the instruction.
-		// We want psiTurk to treat them as started right away to get the refresh/page close protection.
-		psiturk.finishInstructions();
-		start_experiment();
-	}, 100))
-	.catch(handleError);
+		.then(function() {
+			return setTimeout(function(){
+				//initialize_task(28,2,function(){
+				$(document).ready(function(){
+					load_game_data("https://raw.githubusercontent.com/hjweric/fourinarow/master/data/pilot_stimuli.json");
+				})
+				//})
+			},100);
+		}).catch(handleError);
 });
 
 function finish_experiment() {
