@@ -65,7 +65,7 @@ function play_next_move(game_num){
         color = data[0]
         add_piece(move,color);
         show_last_move(move, color);
-        log_data({"event_type": "one move played", "event_info" : {"move_color" : color, "move_index" : move,"bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string, game_num}})
+        log_data({"event_type": "one move played", "event_info" : {"move_color" : color, "move_index" : move,"bp" : bp.join(""), "wp": wp.join(""), "game_num": game_num}})
 
         mi++
         timer = setTimeout(
@@ -150,7 +150,7 @@ function user_move(game_num) {
         current_color = 0}
     else {current_color = 1}
     color_string = (current_color == 0 ? 'black' : 'white')
-    log_data({"event_type": "your turn", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string, game_num}})
+    log_data({"event_type": "your turn", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string, "game_num": game_num}})
     $('.headertext h1').text('You now play ' + color_string + ".");
     $('.canvas, .tile').css('cursor', 'pointer');
     $('.usedTile, .usedTile div').css('cursor', 'default');
@@ -163,7 +163,7 @@ function user_move(game_num) {
         $('.tile').off('mouseenter').off('mouseleave').off('click');
         $('.canvas, .canvas div').css('cursor', 'default');
         tile_ind = parseInt(e.target.id.replace("tile_", ""));
-        log_data({"event_type": "user move", "event_info" : {"tile" : tile_ind, "bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string}})
+        log_data({"event_type": "user move", "event_info" : {"tile" : tile_ind, "bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string,  "game_num": game_num}})
         add_piece(tile_ind,current_color);
         show_last_move(tile_ind, current_color);
         $(".clickprompt").hide();
@@ -220,9 +220,25 @@ function end_game(game_num){
     })
 }
 
+
+function goFullscreen() {
+    let element = document.body;
+    let requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
+
+    if (requestMethod) { // Native full screen.
+        requestMethod.call(element);
+    } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+        var wscript = new ActiveXObject("WScript.Shell");
+        if (wscript !== null) {
+            wscript.SendKeys("{F11}");
+        }
+    }
+}
+
 function show_instructions(i,texts,urls,callback,start_text){
     log_data({"event_type": "show instructions", "event_info" : {"screen_number": i}})
     category = start_category
+    goFullscreen()
     $('.overlayed').show();
     $('#instructions').show();
     $('#instructions p').remove();
@@ -261,24 +277,30 @@ function initialize_task(_num_games,_num_practice_games,callback){
     num_games = _num_games
     num_practice_games = _num_practice_games
     user_color = 0
-    instructions_text = ["You will be playing a few games called 4-in-a-row against the computer.",
-        "In this game, you and the computer place black or white pieces on a game board.",
-        "If you get 4 pieces in a row, you win!",
-        "You can connect your 4 pieces in any direction, horizontal, vertical or diagonal.",
-        "If the computer gets 4-in-a-row before you do, you lose",
-        "If the board is full and no-one has 4-in-a-row, it's a tie",
-        "If you were playing black pieces for one game, then the next game you will play white pieces.",
+    instructions_text = ["You will be seeing black and white circles appearing on a board, alternately, and your task is to remember the order and location in which the circles occur",
+        "There will be circles on the initial screen, and you can watch it for 5 seconds",
+        "Then, you will see 4 to 10 circles appear on the screen, one at a time. The first circle you see will always be a black circle",
+        "click next to see the next move",
+        "click next to see the next move",
+        "click next to see the next move",
+        "After seeing the circles, you will see a blank board for 5 seconds",
+        "Then the initial circles will show up again.",
+        "Your task is to recreate the 4-10 circles that you saw on the screen, in the order and location they appeared, by clicking on the location where you think they occurred the board",
+        "You cannot control when to see the next moves in the games in the future",
         "You will now play " + _num_practice_games.toString() + " practice games. Click start to begin."
     ]
 
     instructions_urls = ["",
-        "black-about-to-win",
-        "black-won",
-        "black-won-diagonal",
-        "",
-        "draw",
-        "",
-        ""]
+        "initial",
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "empty",
+        "initial",
+        "" +
+        "" +
+        "" ]
     instructions_text_after_practice = ["You will now play " + num_games.toString() + " games"]
     instructions_urls_after_practice = [""]
 
