@@ -33,9 +33,8 @@ function saveData() {
 	});
 }
 
-$(document).ready(function(){
-	psiturk.recordUnstructuredData('start', String(new Date()));
-	psiturk.recordUnstructuredData('params', PARAMS);
+$(window).on('load', function() {
+	psiturk.recordUnstructuredData('start', String(new Date()))
 	return saveData()
 		.then(function() {
 			return setTimeout(function(){

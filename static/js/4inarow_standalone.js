@@ -1,5 +1,7 @@
 function finish_experiment(){
-	save(data_log,"fourinarow_data_" + user_credentials + ".json");
+	show_instructions(0,instructions_text_finished,instructions_urls_finished,function(){
+		save(data_log,"fourinarow_data_" + user_credentials + ".json")
+	},"Finish");
 }
 
 function get_image_path(filename){
@@ -10,7 +12,7 @@ function save(data,filename){
 	var blob = new Blob([JSON.stringify(data)], {type: 'text/csv'});
 	var elem = window.document.createElement('a');
 	elem.href = window.URL.createObjectURL(blob);
-	elem.download = filename;        
+	elem.download = filename;
 	document.body.appendChild(elem);
 	elem.click();
 	document.body.removeChild(elem);
