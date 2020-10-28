@@ -37,7 +37,6 @@ function load_game_start(game_num){
             add_piece(i, 1);
         }
     }
-    log_data({"added":true, "bs":bp_start,"ws":wp_start})
 
 }
 
@@ -66,6 +65,8 @@ function play_next_move(game_num){
         color = data[0]
         add_piece(move,color);
         show_last_move(move, color);
+        log_data({"event_type": "one move played", "event_info" : {"move_color" : color, "move_index" : move,"bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string, game_num}})
+
         mi++
         timer = setTimeout(
             function(){
