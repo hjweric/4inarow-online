@@ -40,7 +40,7 @@ $(window).on('load', function() {
 			return setTimeout(function(){
 				initialize_task(28,2,function(){
 				load_game_data("https://raw.githubusercontent.com/hjweric/fourinarow/master/data/pilot_stimuli.json");
-				//})
+				})
 			},100);
 		}).catch(handleError);
 });
