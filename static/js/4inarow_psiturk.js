@@ -33,16 +33,14 @@ function saveData() {
 	});
 }
 
-$(window).on('load', function() {
+$(document).ready(function(){
 	psiturk.recordUnstructuredData('start', String(new Date()));
 	psiturk.recordUnstructuredData('params', PARAMS);
 	return saveData()
 		.then(function() {
 			return setTimeout(function(){
 				//initialize_task(28,2,function(){
-				$(document).ready(function(){
-					load_game_data("https://raw.githubusercontent.com/hjweric/fourinarow/master/data/pilot_stimuli.json");
-				})
+				load_game_data("https://raw.githubusercontent.com/hjweric/fourinarow/master/data/pilot_stimuli.json");
 				//})
 			},100);
 		}).catch(handleError);
