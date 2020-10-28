@@ -1,0 +1,86 @@
+[2020-09-30 14:22:11 -0400] [12663] [CRITICAL] WORKER TIMEOUT (pid:12674)
+[2020-09-30 14:36:49 -0400] [12663] [CRITICAL] WORKER TIMEOUT (pid:13475)
+[2020-09-30 15:15:34 -0400] [12663] [CRITICAL] WORKER TIMEOUT (pid:13491)
+[2020-09-30 15:46:25 -0400] [12663] [CRITICAL] WORKER TIMEOUT (pid:13520)
+[2020-09-30 15:51:36 -0400] [12663] [CRITICAL] WORKER TIMEOUT (pid:13546)
+[2020-09-30 23:29:29 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:14842)
+[2020-09-30 23:56:45 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:16070)
+[2020-10-01 00:01:53 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:16434)
+[2020-10-01 00:26:17 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:16452)
+[2020-10-01 01:48:52 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:16471)
+[2020-10-01 03:41:00 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:16512)
+[2020-10-01 05:41:52 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:16544)
+[2020-10-01 07:42:44 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:16585)
+[2020-10-01 07:53:58 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:16603)
+[2020-10-01 22:26:30 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:16612)
+[2020-10-01 22:51:02 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:21529)
+[2020-10-01 23:51:53 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:21544)
+[2020-10-02 00:52:44 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:21590)
+[2020-10-02 01:49:07 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:21617)
+[2020-10-02 03:50:00 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:21629)
+[2020-10-02 04:53:14 -0400] [14839] [CRITICAL] WORKER TIMEOUT (pid:21651)
+[2020-10-02 04:53:17 -0400] [21670] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+    worker.init_process()
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/gunicorn/workers/base.py", line 129, in init_process
+    self.load_wsgi()
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/gunicorn/workers/base.py", line 138, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/psiturk/experiment_server.py", line 48, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/gunicorn/util.py", line 350, in import_app
+    __import__(module)
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 4556, in create_all
+    ddl.SchemaGenerator, self, checkfirst=checkfirst, tables=tables
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 2096, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 2088, in _optional_conn_ctx_manager
+    with self._contextual_connect() as conn:
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 2304, in _contextual_connect
+    self._wrap_pool_connect(self.pool.connect, None),
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 2342, in _wrap_pool_connect
+    e, dialect, self
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1584, in _handle_dbapi_exception_noconnection
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 2338, in _wrap_pool_connect
+    return fn()
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/pool/base.py", line 364, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/pool/base.py", line 778, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/pool/base.py", line 495, in checkout
+    rec = pool._do_get()
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/pool/impl.py", line 140, in _do_get
+    self._dec_overflow()
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/util/langhelpers.py", line 69, in __exit__
+    exc_value, with_traceback=exc_tb,
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/pool/impl.py", line 137, in _do_get
+    return self._create_connection()
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/pool/base.py", line 309, in _create_connection
+    return _ConnectionRecord(self)
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/pool/base.py", line 440, in __init__
+    self.__connect(first_connect_check=True)
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/pool/base.py", line 661, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/util/langhelpers.py", line 69, in __exit__
+    exc_value, with_traceback=exc_tb,
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/pool/base.py", line 656, in __connect
+    connection = pool._invoke_creator(self)
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 493, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/Users/huangjiawen/four-in-a-row/venv/lib/python2.7/site-packages/psycopg2/__init__.py", line 127, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (psycopg2.OperationalError) could not translate host name "ec2-50-16-221-180.compute-1.amazonaws.com" to address: nodename nor servname provided, or not known
+
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
