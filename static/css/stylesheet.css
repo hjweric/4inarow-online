@@ -58,6 +58,8 @@ html {
 
 .container-fluid{
 	text-align:center;
+	background: #FFF;
+	height: 100%;
 }
 
 .headertext {

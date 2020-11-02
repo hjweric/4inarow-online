@@ -279,7 +279,7 @@ function initialize_task(_num_games,_num_practice_games,callback){
     num_games = _num_games
     num_practice_games = _num_practice_games
     user_color = 0
-    instructions_text = ["You will be seeing black and white circles appearing on a board, alternately, and your task is to remember the order and location in which the circles occur",
+    instructions_text = ["You will be seeing black and white circles appearing on a grid, alternately, and your task is to remember the order and location in which the circles occur",
         "There will be circles on the initial screen, and you can watch it for 5 seconds",
         "Then, you will see 4 to 10 circles appear on the screen, one at a time. The first circle you see will always be a black circle",
         "click next to see the next move",
