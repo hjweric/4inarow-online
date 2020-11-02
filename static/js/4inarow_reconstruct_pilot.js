@@ -1,4 +1,4 @@
-var b,bp,wp,user_color,m,num_games,num_practice_games, current_color, gi,mi, current_move, player_save,gi_save,mi_save, steps
+var b,bp,wp,user_color,m,num_games,num_practice_games, current_color, gi,mi, current_move, player_save,gi_save,mi_save, steps, move_left
 var total_steps, level
 var tiles = [];
 var game_status = "ready"
@@ -150,8 +150,9 @@ function user_move(game_num) {
         current_color = 0}
     else {current_color = 1}
     color_string = (current_color == 0 ? 'black' : 'white')
+    steps_string = steps.toString()
     log_data({"event_type": "your turn", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string, "game_num": game_num}})
-    $('.headertext h1').text('You now play ' + color_string + ".");
+    $('.headertext h1').text('You now play ' + color_string + ". " + steps_string +" moves left.");
     $('.canvas, .tile').css('cursor', 'pointer');
     $('.usedTile, .usedTile div').css('cursor', 'default');
     $('.tile').off().on('mouseenter', function(e){
@@ -176,6 +177,7 @@ function user_move(game_num) {
             end_game(game_num)
         }
         else {
+            steps--
             user_move(game_num)
         }
     });
