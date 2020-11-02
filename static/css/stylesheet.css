@@ -58,14 +58,10 @@ html {
 
 .container-fluid{
 	text-align:center;
-	background: #FFF;
-	height: 100%;
 }
 
 .headertext {
 	color: black;
-	position: absolute;
-	text-align: center;
 }
 
 .gamecount {
