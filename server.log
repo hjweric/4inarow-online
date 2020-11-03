@@ -84,3 +84,10 @@ Traceback (most recent call last):
 OperationalError: (psycopg2.OperationalError) could not translate host name "ec2-50-16-221-180.compute-1.amazonaws.com" to address: nodename nor servname provided, or not known
 
 (Background on this error at: http://sqlalche.me/e/13/e3q8)
+[2020-11-02 23:23:52 -0500] [10191] [CRITICAL] WORKER TIMEOUT (pid:10196)
+[2020-11-02 23:53:19 -0500] [10191] [CRITICAL] WORKER TIMEOUT (pid:10901)
+[2020-11-03 01:54:12 -0500] [10191] [CRITICAL] WORKER TIMEOUT (pid:10943)
+[2020-11-03 03:37:34 -0500] [10191] [CRITICAL] WORKER TIMEOUT (pid:10996)
+[2020-11-03 05:38:27 -0500] [10191] [CRITICAL] WORKER TIMEOUT (pid:11022)
+[2020-11-03 07:39:19 -0500] [10191] [CRITICAL] WORKER TIMEOUT (pid:11087)
+[2020-11-03 09:40:11 -0500] [10191] [CRITICAL] WORKER TIMEOUT (pid:11125)

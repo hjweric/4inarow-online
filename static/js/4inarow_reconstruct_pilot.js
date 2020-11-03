@@ -47,7 +47,7 @@ function reconstruction_all(game_num){
     load_game_start(game_num)
     mi = 0
     steps = game_data[task_type][game_num].length
-    $('.headertext h1').text('This game has ' + steps.toString() + ' moves').css('color', '#000000');
+    $('.headertext h1').text('This sequence has ' + steps.toString() + ' steps').css('color', '#000000');
 
     log_data({"steps":steps, "bs":bp_start,"ws":wp_start})
 
@@ -95,7 +95,7 @@ function get_level_game(){
 
 function select_random_board(game_num) {
     generate_ok_games()
-    $('.headertext h1').text('This game has ' + steps.toString() + ' moves').css('color', '#000000');
+    $('.headertext h1').text('This sequence has ' + steps.toString() + ' steps').css('color', '#000000');
     timer = setTimeout(function (){
         play_next_move(game_num)
     },5000)
@@ -281,29 +281,43 @@ function initialize_task(_num_games,_num_practice_games,callback){
     user_color = 0
     instructions_text = ["You will be seeing black and white circles appearing on a grid, alternately, and your task is to remember the order and location in which the circles occur",
         "There will be circles on the initial screen, and you can watch it for 5 seconds",
-        "Then, you will see 4 to 10 circles appear on the screen, one at a time. The first circle you see will always be a black circle",
-        "click next to see the next move",
-        "click next to see the next move",
-        "click next to see the next move",
-        "After seeing the circles, you will see a blank board for 5 seconds",
-        "Then the initial circles will show up again.",
+        "Then, you will see 4 to 10 circles appear on the screen, one at a time. ",
+        "The first circle you see will always be a black circle. Click next to see the next circle",
+        "Click next to see the next circle",
+        "Click next to see the next circle",
+        "Click next to see the next circle",
+        "in the real experiment, the circles will be added automatically",
+        "After seeing the circles, you will see a blank grid for 5 seconds",
+        "Then the initial screen will show up again.",
         "Your task is to recreate the 4-10 circles that you saw on the screen, in the order and location they appeared, by clicking on the location where you think they occurred the board",
-        "You cannot control when to see the next moves in the games in the future",
+        "You can move your mouse to where you think the first circle appear.",
+        "Click the mouse to place the first circle. ",
+        "Repeat the process for the second circle",
+        "Repeat the process for the third circle",
+        "Repeat the process for the fourth circle",
         "You will now play " + _num_practice_games.toString() + " practice games. Click start to begin."
     ]
 
     instructions_urls = ["",
         "initial",
+        "",
         "m1",
         "m2",
         "m3",
         "m4",
+        "",
         "empty",
         "initial",
+        "",
+        "mousem1",
+        "m1_re",
+        "m2_re",
+        "m3_re",
+        "m4_re",
         "" +
         "" +
         "" ]
-    instructions_text_after_practice = ["You will now play " + num_games.toString() + " games"]
+    instructions_text_after_practice = ["You will now do " + num_games.toString() + " runs of the  task."]
     instructions_urls_after_practice = [""]
 
 
