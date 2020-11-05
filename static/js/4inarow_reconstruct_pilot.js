@@ -25,8 +25,8 @@ function load_game_data(filename){
 
 
 function load_game_start(game_num){
-    bp_start = game_data[task_type][game_num][0][1]
-    wp_start = game_data[task_type][game_num][0][2]
+    bp_start = game_data[task_type][game_num-correction_index][0][1]
+    wp_start = game_data[task_type][game_num-correction_index][0][2]
     log_data({"started":true, "bs":bp_start,"ws":wp_start})
     create_board()
     for(var i=0; i<M*N; i++){
@@ -45,7 +45,7 @@ function reconstruction_all(game_num){
 
     load_game_start(game_num)
     mi = 0
-    steps = game_data[task_type][game_num].length
+    steps = game_data[task_type][game_num-correction_index].length
     $('.headertext h1').text('This sequence has ' + steps.toString() + ' steps').css('color', '#000000');
 
     log_data({"steps":steps, "bs":bp_start,"ws":wp_start})
@@ -59,7 +59,7 @@ function reconstruction_all(game_num){
 
 function play_next_move(game_num){
     if (mi< steps){
-        var data = game_data[task_type][game_num][mi]
+        var data = game_data[task_type][game_num-correction_index][mi]
         move = data[3]
         color = data[0]
         add_piece(move,color);
@@ -197,7 +197,7 @@ function start_game(game_num){
         $('.gamecount').text("Game " + (game_num-num_practice_games+1).toString() + " out of " + num_games.toString());
         correction_index =2
     }
-    reconstruction_all(game_num-correction_index)
+    reconstruction_all(game_num)
     if (!dismissed_click_prompt) $('.clickprompt').show();
     log_data({"event_type": "start game", "event_info": {"game_num": game_num, "is_practice": game_num<num_practice_games,"user_color" : (user_color == 0 ? 'black' : 'white')}})
 }
