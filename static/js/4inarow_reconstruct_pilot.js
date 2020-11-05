@@ -52,7 +52,7 @@ function reconstruction_all(game_num){
 
     timer = setTimeout(function(){
         play_next_move(game_num)
-    }, 500)
+    }, 5000)
 
 }
 
@@ -69,7 +69,7 @@ function play_next_move(game_num){
         mi++
         timer = setTimeout(
             function(){
-                play_next_move(game_num)},300);
+                play_next_move(game_num)},3000);
     }
     else{
         //add_piece(move,color);
@@ -79,7 +79,7 @@ function play_next_move(game_num){
         timer = setTimeout(function (){
             load_game_start(game_num)
             user_move(game_num)
-        },500)
+        },5000)
     }
 }
 
