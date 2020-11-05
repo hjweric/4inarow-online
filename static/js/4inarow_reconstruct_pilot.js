@@ -152,7 +152,7 @@ function user_move(game_num) {
     color_string = (current_color == 0 ? 'black' : 'white')
     steps_string = steps.toString()
     log_data({"event_type": "your turn", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string, "game_num": game_num}})
-    $('.headertext h1').text('You now play ' + color_string + ". " + steps_string +" moves left.");
+    $('.headertext h1').text('You now place ' + color_string + "piece. " + steps_string +" steps left.");
     $('.canvas, .tile').css('cursor', 'pointer');
     $('.usedTile, .usedTile div').css('cursor', 'default');
     $('.tile').off().on('mouseenter', function(e){
@@ -279,18 +279,18 @@ function initialize_task(_num_games,_num_practice_games,callback){
     num_games = _num_games
     num_practice_games = _num_practice_games
     user_color = 0
-    instructions_text = ["You will be seeing black and white circles appearing on a grid, alternately, and your task is to remember the order and location in which the circles occur",
-        "There will be circles on the initial screen, and you can watch it for 5 seconds",
-        "Then, you will see 4 to 10 circles appear on the screen, one at a time. ",
-        "The first circle you see will always be a black circle. Click next to see the next circle",
-        "Click next to see the next circle",
-        "Click next to see the next circle",
-        "Click next to see the next circle",
-        "in the real experiment, the circles will be added automatically",
-        "After seeing the circles, you will see a blank grid for 5 seconds",
+    instructions_text = ["You will be seeing black and white circles appearing on a grid, and your task is to remember the order and location in which the circles occur.",
+        "There will be circles on the initial screen, and it will be shown for 5 seconds.",
+        "Then, you will see several circles (the number of circles range from 4-10) appear on the screen, one at a time. Click next to see the first circle. ",
+        "The first circle you see will always be a black circle. Click next to see the next circle, which will be white.",
+        "Click next to see the next circle, which will be black.",
+        "Click next to see the next circle, which will be white.",
+        "That's all the circles for this demonstration." ,
+        "In the real experiment, a circle will be added automatically every 3 seconds.",
+        "After seeing all the circles, you will see a blank grid for 5 seconds",
         "Then the initial screen will show up again.",
-        "Your task is to recreate the 4-10 circles that you saw on the screen, in the order and location they appeared, by clicking on the location where you think they occurred the board",
-        "You can move your mouse to where you think the first circle appear.",
+        "Your task is to recreate the occurrence of the 4-10 circles that you saw on the screen, in the order and location they appeared, by clicking on the location where they occurred the grid.",
+        "In the first circle, You can move your mouse to where you think the first circle appear.",
         "Click the mouse to place the first circle. ",
         "Repeat the process for the second circle",
         "Repeat the process for the third circle",
