@@ -1,4 +1,4 @@
-var b,bp,wp,user_color,m,num_games,num_practice_games, current_color, gi,mi, current_move, player_save,gi_save,mi_save, steps, move_left
+var b,bp,wp,user_color,m,num_games,num_practice_games, current_color, gi,mi, current_move, player_save,gi_save,mi_save, steps, move_left,correction_index
 var total_steps, level
 var tiles = [];
 var game_status = "ready"
@@ -190,12 +190,14 @@ function start_game(game_num){
     if(game_num<num_practice_games){
         task_type = 'practice'
         $('.gamecount').text("Practice game " + (game_num+1).toString() + " out of " + num_practice_games.toString());
+        correction_index =0
     }
     else{
         task_type = "formal"
         $('.gamecount').text("Game " + (game_num-num_practice_games+1).toString() + " out of " + num_games.toString());
+        correction_index =2
     }
-    reconstruction_all(game_num)
+    reconstruction_all(game_num-correction_index)
     if (!dismissed_click_prompt) $('.clickprompt').show();
     log_data({"event_type": "start game", "event_info": {"game_num": game_num, "is_practice": game_num<num_practice_games,"user_color" : (user_color == 0 ? 'black' : 'white')}})
 }
