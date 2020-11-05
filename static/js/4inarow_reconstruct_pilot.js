@@ -52,7 +52,7 @@ function reconstruction_all(game_num){
 
     timer = setTimeout(function(){
         play_next_move(game_num)
-    }, 5000)
+    }, 500)
 
 }
 
@@ -69,7 +69,7 @@ function play_next_move(game_num){
         mi++
         timer = setTimeout(
             function(){
-                play_next_move(game_num)},3000);
+                play_next_move(game_num)},300);
     }
     else{
         //add_piece(move,color);
@@ -79,7 +79,7 @@ function play_next_move(game_num){
         timer = setTimeout(function (){
             load_game_start(game_num)
             user_move(game_num)
-        },5000)
+        },500)
     }
 }
 
@@ -97,7 +97,7 @@ function select_random_board(game_num) {
     $('.headertext h1').text('This sequence has ' + steps.toString() + ' steps').css('color', '#000000');
     timer = setTimeout(function (){
         play_next_move(game_num)
-    },5000)
+    },500)
 }
 
 function create_board() {
