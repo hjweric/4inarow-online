@@ -42,7 +42,6 @@ function load_game_start(game_num){
 
 
 function reconstruction_all(game_num){
-    game_data["formal"] = shuffle(game_data["formal"])
 
     load_game_start(game_num)
     mi = 0
@@ -368,6 +367,7 @@ function start_experiment(response){
         e.preventDefault()
     })
     show_instructions(0,instructions_text,instructions_urls,function(){
+        game_data["formal"] = shuffle(game_data["formal"])
         start_game(0)
     },"Start")
 }

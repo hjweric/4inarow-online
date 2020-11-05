@@ -38,7 +38,7 @@ $(window).on('load', function() {
 	return saveData()
 		.then(function() {
 			return setTimeout(function(){
-				initialize_task(5,2,function(){
+				initialize_task(28,2,function(){
 				load_game_data("https://raw.githubusercontent.com/hjweric/fourinarow/master/data/pilot_stimuli.json");
 				})
 			},100);
