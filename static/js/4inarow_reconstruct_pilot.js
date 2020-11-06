@@ -151,7 +151,7 @@ function user_move(game_num) {
     color_string = (current_color == 0 ? 'black' : 'white')
     steps_string = steps.toString()
     log_data({"event_type": "your turn", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string, "game_num": game_num}})
-    $('.headertext h1').text('You now place ' + color_string + "piece. " + steps_string +" steps left.");
+    $('.headertext h1').text('You now place ' + color_string + " piece. " + steps_string +" steps left.");
     $('.canvas, .tile').css('cursor', 'pointer');
     $('.usedTile, .usedTile div').css('cursor', 'default');
     $('.tile').off().on('mouseenter', function(e){
@@ -292,7 +292,7 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "Then the initial screen will show up again.",
         "Your task is to recreate the occurrence of the 4-10 circles that you saw on the screen, in the order and location they appeared, by clicking on the location where they occurred the grid.",
         "In the first circle, You can move your mouse to where you think the first circle appear.",
-        "Click the mouse to place the first circle. ",
+        "You need to Click the mouse in the position to place the first circle, like shown here. ",
         "Repeat the process for the second circle",
         "Repeat the process for the third circle",
         "Repeat the process for the fourth circle",
