@@ -303,7 +303,7 @@ function show_instructions(i,texts,urls,callback,start_text){
     goFullscreen()
     $('.overlayed').show();
     $('#instructions p').remove();
-    $('#instructions h4').after("<p>" + "Is this true or false?" + texts[i] + "</p>");
+    $('#instructions h4').after("<p>" + texts[i] + "</p>");
     $('#truebutton').hide()
     $('#falsebutton').hide()
     if(urls[i]==""){
