@@ -90,7 +90,7 @@ function handleError(e) {
 	}
 	psiturk.recordUnstructuredData('error', msg);
 	message = "HitID: " + (typeof hitId !== "undefined" && hitId !== null ? hitId[0] : "N/A") + "\nAssignID: " + (typeof hitId !== "undefined" && hitId !== null ? hitId[0] : "N/A") + "\nWorkerId: " + (typeof workerId !== "undefined" && workerId !== null ? workerId[0] : "N/A") + "\n" + msg
-	$("#handle_error p a").attr("href","mailto:hartleylab@nyu.edu?subject=ERROR in experiment&body=" + encodeURIComponent(message))
+	$("#handle_error p a").attr("href","mailto:zcjtjhu@ucl.ac.edu?subject=ERROR in experiment&body=" + encodeURIComponent(message))
 	$("#handle_error textarea").text(message)
 	$("#handle_error").show()
 	return $('#submit_hit').click(submitHit);

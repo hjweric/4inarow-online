@@ -56,19 +56,6 @@ function reconstruction_all(game_num){
 
 }
 
-function generate_random_tf_euqations(){
-    var first_digit = getRndInteger(1,9)
-    var second_digit = getRndInteger(1,9)
-    var third_digit = getRndInteger(1,9)
-    var operator_rand = ['+','-','*','/']
-    var first_op = operator_rand[getRndInteger(0,3)]
-    var second_op = operator_rand[getRndInteger(0,3)]
-    var true_result = first_digit+first_op+second_digit+second_op+third_digit+'='+eval(first_digit+first_op+second_digit+second_op+third_digit).toString()
-    var false_result = first_digit+first_op+second_digit+second_op+third_digit+'='+(eval(first_digit+first_op+second_digit+second_op+third_digit)+getRndInteger(-5,5)).toString()
-    return([true_result, false_result])
-}
-
-
 
 function play_next_move(game_num){
     if (mi< steps){
@@ -88,8 +75,11 @@ function play_next_move(game_num){
         //add_piece(move,color);
         //show_last_move(move, color);
         total_steps = bp.filter(x => x==1).length + wp.filter(x => x==1).length
-        $('.canvas').hide()
-        distractor_mental_arithmetic(game_num)
+        create_board()
+        timer = setTimeout(function (){
+            load_game_start(game_num)
+            user_move(game_num)
+        },5000)
     }
 }
 
@@ -102,13 +92,13 @@ function get_level_game(){
 
 
 
-//function select_random_board(game_num) {
-//    generate_ok_games()
-//    $('.headertext h1').text('This sequence has ' + steps.toString() + ' steps').css('color', '#000000');
-//   timer = setTimeout(function (){
-//        play_next_move(game_num)
-//   },500)
-//}
+function select_random_board(game_num) {
+    generate_ok_games()
+    $('.headertext h1').text('This sequence has ' + steps.toString() + ' steps').css('color', '#000000');
+    timer = setTimeout(function (){
+        play_next_move(game_num)
+    },500)
+}
 
 function create_board() {
     bp = new Array(M*N).fill(0)
@@ -161,7 +151,7 @@ function user_move(game_num) {
     color_string = (current_color == 0 ? 'black' : 'white')
     steps_string = steps.toString()
     log_data({"event_type": "your turn", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string, "game_num": game_num}})
-    $('.headertext h1').show().text('You now place ' + color_string + " piece. " + steps_string +" steps left.");
+    $('.headertext h1').text('You now place ' + color_string + " piece. " + steps_string +" steps left.");
     $('.canvas, .tile').css('cursor', 'pointer');
     $('.usedTile, .usedTile div').css('cursor', 'default');
     $('.tile').off().on('mouseenter', function(e){
@@ -248,64 +238,14 @@ function goFullscreen() {
     }
 }
 
-function feedback_right_MA(game_num){
-    $('#truebutton').hide()
-    $('#falsebutton').hide()
-    $('#instructions h4').after("<p>" + "Correct. Click next to see the next question" + "</p>");
-    $('#nextbutton').text('Next')
-    $('#nextbutton').show().off("click").on("click",function(){
-        load_game_start(game_num)
-        user_move(game_num)
-    });
-
-}
-function feedback_wrong_MA(game_num){
-    $('#truebutton').hide()
-    $('#falsebutton').hide()
-    $('#instructions h4').after("<p>" + "Incorrect. Click next to see the next question" + "</p>");
-    $('#nextbutton').text('Next')
-    $('#nextbutton').show().off("click").on("click",function(){
-        load_game_start(game_num)
-        user_move(game_num)
-    });
-}
-
-function distractor_mental_arithmetic(game_num){
-    display_list =generate_random_tf_euqations()
-    true_or_false = Math.round(Math.random())
-    instructions_text = display_list[true_or_false]
-    $('.overlayed').show();
-    $('#instructions').show();
-    $('.headertext h1').hide()
-    $('#instructions p').remove();
-    $('#instructions h4').after("<p>" + instructions_text + "</p>");
-    if (true_or_false == 0){
-        $('#truebutton').show().off("click").on("click",function(){
-            feedback_right_MA(game_num)}
-            )
-
-        $('#falsebutton').show().off("click").on("click",function(){
-            feedback_wrong_MA(game_num)})
-    }
-    else {
-        $('#truebutton').show().off("click").on("click",function(){
-            feedback_wrong_MA(game_num)})
-
-        $('#falsebutton').show().off("click").on("click",function(){
-            feedback_right_MA(game_num)})
-    }
-
-}
-
 function show_instructions(i,texts,urls,callback,start_text){
     log_data({"event_type": "show instructions", "event_info" : {"screen_number": i}})
     category = start_category
     goFullscreen()
     $('.overlayed').show();
+    $('#instructions').show();
     $('#instructions p').remove();
     $('#instructions h4').after("<p>" + texts[i] + "</p>");
-    $('#truebutton').hide()
-    $('#falsebutton').hide()
     if(urls[i]==""){
         $('#instructions img').hide()
     }
@@ -433,4 +373,3 @@ function start_experiment(response){
         start_game(0)
     },"Start")
 }
-
