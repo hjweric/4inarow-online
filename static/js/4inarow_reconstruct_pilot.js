@@ -75,7 +75,7 @@ function play_next_move(game_num){
         //add_piece(move,color);
         //show_last_move(move, color);
         total_steps = bp.filter(x => x==1).length + wp.filter(x => x==1).length
-        create_board()
+        $('.canvas').empty()
         timer = setTimeout(function (){
             load_game_start(game_num)
             user_move(game_num)
@@ -92,13 +92,13 @@ function get_level_game(){
 
 
 
-function select_random_board(game_num) {
-    generate_ok_games()
-    $('.headertext h1').text('This sequence has ' + steps.toString() + ' steps').css('color', '#000000');
-    timer = setTimeout(function (){
-        play_next_move(game_num)
-    },500)
-}
+//function select_random_board(game_num) {
+//    generate_ok_games()
+//    $('.headertext h1').text('This sequence has ' + steps.toString() + ' steps').css('color', '#000000');
+//   timer = setTimeout(function (){
+//        play_next_move(game_num)
+//   },500)
+//}
 
 function create_board() {
     bp = new Array(M*N).fill(0)
@@ -246,6 +246,8 @@ function show_instructions(i,texts,urls,callback,start_text){
     $('#instructions').show();
     $('#instructions p').remove();
     $('#instructions h4').after("<p>" + texts[i] + "</p>");
+    $('#truebutton').hide()
+    $('#falsebutton').hide()
     if(urls[i]==""){
         $('#instructions img').hide()
     }
