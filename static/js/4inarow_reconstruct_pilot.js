@@ -304,6 +304,7 @@ function show_instructions(i,texts,urls,callback,start_text){
     $('.overlayed').show();
     $('#instructions p').remove();
     $('#instructions h4').after("<p>" + texts[i] + "</p>");
+    $('#instructions h4').after("<p>" + "Is this true or false?" <br> texts[i] + "</p>");
     $('#truebutton').hide()
     $('#falsebutton').hide()
     if(urls[i]==""){
