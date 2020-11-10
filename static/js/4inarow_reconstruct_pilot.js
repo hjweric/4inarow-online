@@ -46,7 +46,7 @@ function reconstruction_all(game_num){
     load_game_start(game_num)
     mi = 0
     steps = game_data[task_type][game_num-correction_index].length
-    $('.headertext h1').text('This sequence has ' + steps.toString() + ' steps').css('color', '#000000');
+    $('.headertext h1').show().text('This sequence has ' + steps.toString() + ' steps').css('color', '#000000');
 
     log_data({"steps":steps, "bs":bp_start,"ws":wp_start})
 
@@ -156,7 +156,7 @@ function user_move(game_num) {
     color_string = (current_color == 0 ? 'black' : 'white')
     steps_string = steps.toString()
     log_data({"event_type": "your turn", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string, "game_num": game_num}})
-    $('.headertext h1').text('You now place ' + color_string + " piece. " + steps_string +" steps left.");
+    $('.headertext h1').show().text('You now place ' + color_string + " piece. " + steps_string +" steps left.");
     $('.canvas, .tile').css('cursor', 'pointer');
     $('.usedTile, .usedTile div').css('cursor', 'default');
     $('.tile').off().on('mouseenter', function(e){
