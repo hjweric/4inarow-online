@@ -91,3 +91,21 @@ OperationalError: (psycopg2.OperationalError) could not translate host name "ec2
 [2020-11-03 05:38:27 -0500] [10191] [CRITICAL] WORKER TIMEOUT (pid:11022)
 [2020-11-03 07:39:19 -0500] [10191] [CRITICAL] WORKER TIMEOUT (pid:11087)
 [2020-11-03 09:40:11 -0500] [10191] [CRITICAL] WORKER TIMEOUT (pid:11125)
+2020-11-10 00:06:34,872 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:06:38,932 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:06:49,618 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug2'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:07:27,766 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:07:29,689 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:09:41,411 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:10:36,583 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:12:35,344 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:13:06,261 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:15:14,597 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:16:20,576 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:18:04,729 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:20:51,537 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:20:54,079 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug2'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:21:44,438 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:23:23,309 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:26:06,876 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-10 00:26:51,916 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}

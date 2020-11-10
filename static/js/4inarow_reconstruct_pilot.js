@@ -52,7 +52,7 @@ function reconstruction_all(game_num){
 
     timer = setTimeout(function(){
         play_next_move(game_num)
-    }, 5000)
+    }, 500)
 
 }
 
@@ -69,16 +69,21 @@ function play_next_move(game_num){
         mi++
         timer = setTimeout(
             function(){
-                play_next_move(game_num)},3000);
+                play_next_move(game_num)},300);
     }
     else{
         //add_piece(move,color);
         //show_last_move(move, color);
         total_steps = bp.filter(x => x==1).length + wp.filter(x => x==1).length
-        $(".canvas").empty()
+        //$(".canvas").empty()
         distractor_mental_arithmetic(game_num)
-        //timer = setTimeout(function (){
-        //},5000)
+        timer = setTimeout(function (){
+            $('#instructions').hide();
+            $('.overlayed').hide();
+
+            load_game_start(game_num)
+            user_move(game_num)
+        },10000)
     }
 }
 
@@ -91,13 +96,13 @@ function get_level_game(){
 
 
 
-function select_random_board(game_num) {
-    generate_ok_games()
-    $('.headertext h1').text('This sequence has ' + steps.toString() + ' steps').css('color', '#000000');
-    timer = setTimeout(function (){
-        play_next_move(game_num)
-    },500)
-}
+//function select_random_board(game_num) {
+//    generate_ok_games()
+//    $('.headertext h1').text('This sequence has ' + steps.toString() + ' steps').css('color', '#000000');
+//    timer = setTimeout(function (){
+//        play_next_move(game_num)
+//    },500)
+//}
 
 function create_board() {
     bp = new Array(M*N).fill(0)
@@ -251,34 +256,63 @@ function generate_random_tf_euqations(){
     return([true_result, false_result])
 }
 
+
+function feedback_right_MA(game_num){
+    $('#truebutton').hide()
+    $('#falsebutton').hide()
+    $('#instructions h4').after("<p>" + "Correct. Click next to see the next question" + "</p>");
+    $('#previousbutton').hide()
+    $('#nextbutton').text('Next')
+    $('#nextbutton').show().off("click").on("click",function(){
+        //$('.overlayed').hide();
+        //$('#instructions').hide();
+        //load_game_start(game_num)
+        //user_move(game_num)
+        distractor_mental_arithmetic(game_num)
+    });
+
+}
+function feedback_wrong_MA(game_num){
+    $('#truebutton').hide()
+    $('#falsebutton').hide()
+    $('#instructions h4').after("<p>" + "Incorrect. Click next to see the next question" + "</p>");
+    $('#previousbutton').hide()
+    $('#nextbutton').text('Next')
+    $('#nextbutton').show().off("click").on("click",function(){
+        //$('#instructions').hide();
+        //$('.overlayed').hide();
+        //load_game_start(game_num)
+        //user_move(game_num)
+        distractor_mental_arithmetic(game_num)
+    });
+}
+
+
 function distractor_mental_arithmetic(game_num){
     display_list =generate_random_tf_euqations()
     true_or_false = Math.round(Math.random())
     instructions_text = display_list[true_or_false]
     $('.overlayed').show();
     $('#instructions').show();
-    $('.headertext h1').hide()
+    $('.headertext h1').hide();
+    $('.previousbutton').hide();
     $('#instructions p').remove();
     $('#instructions h4').after("<p>" + instructions_text + "</p>");
     if (true_or_false == 0){
         $('#truebutton').show().off("click").on("click",function(){
-            load_game_start(game_num)
-            user_move(game_num)}
+            feedback_right_MA(game_num)}
         )
 
         $('#falsebutton').show().off("click").on("click",function(){
-            load_game_start(game_num)
-            user_move(game_num)})
+            feedback_wrong_MA(game_num)})
     }
     else {
         $('#truebutton').show().off("click").on("click",function(){
-            load_game_start(game_num)
-            user_move(game_num)}
+            feedback_wrong_MA(game_num)}
             )
 
         $('#falsebutton').show().off("click").on("click",function(){
-            load_game_start(game_num)
-            user_move(game_num)}
+            feedback_right_MA(game_num)}
             )
     }
 
