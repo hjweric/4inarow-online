@@ -52,7 +52,7 @@ function reconstruction_all(game_num){
 
     timer = setTimeout(function(){
         play_next_move(game_num)
-    }, 500)
+    }, 5000)
 
 }
 
@@ -69,7 +69,7 @@ function play_next_move(game_num){
         mi++
         timer = setTimeout(
             function(){
-                play_next_move(game_num)},300);
+                play_next_move(game_num)},5000);
     }
     else{
         //add_piece(move,color);
@@ -369,9 +369,12 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "Click next to see the next circle, which will be black.",
         "Click next to see the next circle, which will be white.",
         "That's all the circles for this demonstration." ,
-        "In the real experiment, a circle will be added automatically every 3 seconds.",
-        "After seeing all the circles, you will see a blank grid for 5 seconds",
-        "Then the initial screen will show up again.",
+        "In the real experiment, a circle will be added automatically every 5 seconds.",
+        "After seeing all the circles, you will need to complete some mental arithmetic task for 10 seconds.",
+        "You need to decide if the equation is true or false.",
+        "You will receive a feedback on your choice, click 'next' to see the next equation. ",
+        "",
+        "After 10 seconds of mental arithmetic, the initial screen will show up again.",
         "Your task is to recreate the occurrence of the 4-10 circles that you saw on the screen, in the order and location they appeared, by clicking on the location where they occurred the grid.",
         "In the first circle, You can move your mouse to where you think the first circle appear.",
         "You need to Click the mouse in the position to place the first circle, like shown here. ",
@@ -389,7 +392,10 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "m3",
         "m4",
         "",
-        "empty",
+        "",
+        "arithmetic",
+        "a_feedback",
+        "arithmetic2",
         "initial",
         "",
         "mousem1",
