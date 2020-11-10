@@ -248,7 +248,7 @@ function goFullscreen() {
     }
 }
 
-function feedback_right_MA(){
+function feedback_right_MA(game_num){
     $('#truebutton').hide()
     $('#falsebutton').hide()
     $('#instructions h4').after("<p>" + "Correct. Click next to see the next question" + "</p>");
@@ -259,7 +259,7 @@ function feedback_right_MA(){
     });
 
 }
-function feedback_wrong_MA(){
+function feedback_wrong_MA(game_num){
     $('#truebutton').hide()
     $('#falsebutton').hide()
     $('#instructions h4').after("<p>" + "Incorrect. Click next to see the next question" + "</p>");
