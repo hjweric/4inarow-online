@@ -300,11 +300,10 @@ function distractor_mental_arithmetic(game_num){
 function show_instructions(i,texts,urls,callback,start_text){
     log_data({"event_type": "show instructions", "event_info" : {"screen_number": i}})
     category = start_category
-    //goFullscreen()
+    goFullscreen()
     $('.overlayed').show();
     $('#instructions p').remove();
     $('#instructions h4').after("<p>" + texts[i] + "</p>");
-    $('#instructions h4').after("<p>" + "Is this true or false?" <br> texts[i] + "</p>");
     $('#truebutton').hide()
     $('#falsebutton').hide()
     if(urls[i]==""){
