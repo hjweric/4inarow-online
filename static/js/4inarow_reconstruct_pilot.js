@@ -56,6 +56,19 @@ function reconstruction_all(game_num){
 
 }
 
+function generate_random_tf_euqations(){
+    var first_digit = getRndInteger(1,9)
+    var second_digit = getRndInteger(1,9)
+    var third_digit = getRndInteger(1,9)
+    var operator_rand = ['+','-','*','/']
+    var first_op = operator_rand[getRndInteger(0,3)]
+    var second_op = operator_rand[getRndInteger(0,3)]
+    var true_result = first_digit+first_op+second_digit+second_op+third_digit+'='+eval(first_digit+first_op+second_digit+second_op+third_digit).toString()
+    var false_result = first_digit+first_op+second_digit+second_op+third_digit+'='+(eval(first_digit+first_op+second_digit+second_op+third_digit)+getRndInteger(-5,5)).toString()
+    return([true_result, false_result])
+}
+
+
 
 function play_next_move(game_num){
     if (mi< steps){
@@ -76,6 +89,7 @@ function play_next_move(game_num){
         //show_last_move(move, color);
         total_steps = bp.filter(x => x==1).length + wp.filter(x => x==1).length
         $('.canvas').empty()
+        distractor_mental_arithmetic()
         timer = setTimeout(function (){
             load_game_start(game_num)
             user_move(game_num)
@@ -236,6 +250,48 @@ function goFullscreen() {
             wscript.SendKeys("{F11}");
         }
     }
+}
+
+function feedback_right_MA(){
+    $('#truebutton').hide()
+    $('#falsebutton').hide()
+    $('#instructions h4').after("<p>" + "correct. Click next to see the next question" + "</p>");
+    $('#nextbutton').show().off("click").on("click",function(){
+        distractor_mental_arithmetic()
+    });
+}
+function feedback_wrong_MA(){
+    $('#truebutton').hide()
+    $('#falsebutton').hide()
+    $('#instructions h4').after("<p>" + "incorrect. Click next to see the next question" + "</p>");
+    $('#nextbutton').show().off("click").on("click",function(){
+        distractor_mental_arithmetic()
+    });
+}
+
+function distractor_mental_arithmetic(){
+    display_list =generate_random_tf_euqations()
+    true_or_false = Math.round(Math.random())
+    instructions_text = display_list[true_or_false]
+    $('.overlayed').show();
+    $('#instructions').show();
+    $('#instructions p').remove();
+    $('#instructions h4').after("<p>" + instructions_text + "</p>");
+    if (true_or_false == 0){
+        $('#truebutton').show().off("click").on("click",function(){
+            feedback_right_MA()})
+
+        $('#falsebutton').show().off("click").on("click",function(){
+            feedback_wrong_MA()})
+    }
+    else {
+        $('#truebutton').show().off("click").on("click",function(){
+            feedback_wrong_MA()})
+
+        $('#falsebutton').show().off("click").on("click",function(){
+            feedback_right_MA()})
+    }
+
 }
 
 function show_instructions(i,texts,urls,callback,start_text){
