@@ -373,7 +373,7 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "After seeing all the circles, you will need to complete some mental arithmetic task for 10 seconds.",
         "You need to decide if the equation is true or false.",
         "You will receive a feedback on your choice, click 'next' to see the next equation. ",
-        "",
+        "You should complete as many of this task as possible in 10 seconds. ",
         "After 10 seconds of mental arithmetic, the initial screen will show up again.",
         "Your task is to recreate the occurrence of the 4-10 circles that you saw on the screen, in the order and location they appeared, by clicking on the location where they occurred the grid.",
         "In the first circle, You can move your mouse to where you think the first circle appear.",
