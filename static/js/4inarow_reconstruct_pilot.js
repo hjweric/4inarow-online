@@ -89,7 +89,7 @@ function play_next_move(game_num){
         //show_last_move(move, color);
         total_steps = bp.filter(x => x==1).length + wp.filter(x => x==1).length
         $('.canvas').hide()
-        distractor_mental_arithmetic()
+        distractor_mental_arithmetic(game_num)
     }
 }
 
