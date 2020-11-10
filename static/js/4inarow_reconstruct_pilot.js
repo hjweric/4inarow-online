@@ -75,11 +75,9 @@ function play_next_move(game_num){
         //add_piece(move,color);
         //show_last_move(move, color);
         total_steps = bp.filter(x => x==1).length + wp.filter(x => x==1).length
-        create_board()
-        timer = setTimeout(function (){
-            load_game_start(game_num)
-            user_move(game_num)
-        },5000)
+        $(".canvas").empty()
+        //timer = setTimeout(function (){
+        //},5000)
     }
 }
 
@@ -111,6 +109,7 @@ function create_board() {
         $(".canvas").append("<br>");
     }
 }
+
 
 function add_piece(i, color) {
     if(color == 0) {//BLACK
@@ -236,6 +235,52 @@ function goFullscreen() {
             wscript.SendKeys("{F11}");
         }
     }
+}
+
+
+function generate_random_tf_euqations(){
+    var first_digit = getRndInteger(1,9)
+    var second_digit = getRndInteger(1,9)
+    var third_digit = getRndInteger(1,9)
+    var operator_rand = ['+','-','*','/']
+    var first_op = operator_rand[getRndInteger(0,3)]
+    var second_op = operator_rand[getRndInteger(0,3)]
+    var true_result = first_digit+first_op+second_digit+second_op+third_digit+'='+eval(first_digit+first_op+second_digit+second_op+third_digit).toString()
+    var false_result = first_digit+first_op+second_digit+second_op+third_digit+'='+(eval(first_digit+first_op+second_digit+second_op+third_digit)+getRndInteger(-5,5)).toString()
+    return([true_result, false_result])
+}
+
+function distractor_mental_arithmetic(game_num){
+    display_list =generate_random_tf_euqations()
+    true_or_false = Math.round(Math.random())
+    instructions_text = display_list[true_or_false]
+    $('.overlayed').show();
+    $('#instructions').show();
+    $('.headertext h1').hide()
+    $('#instructions p').remove();
+    $('#instructions h4').after("<p>" + instructions_text + "</p>");
+    if (true_or_false == 0){
+        $('#truebutton').show().off("click").on("click",function(){
+            load_game_start(game_num)
+            user_move(game_num)}
+        )
+
+        $('#falsebutton').show().off("click").on("click",function(){
+            load_game_start(game_num)
+            user_move(game_num)})
+    }
+    else {
+        $('#truebutton').show().off("click").on("click",function(){
+            load_game_start(game_num)
+            user_move(game_num)}
+            )
+
+        $('#falsebutton').show().off("click").on("click",function(){
+            load_game_start(game_num)
+            user_move(game_num)}
+            )
+    }
+
 }
 
 function show_instructions(i,texts,urls,callback,start_text){
