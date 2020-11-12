@@ -281,9 +281,13 @@ function distractor_mental_arithmetic(game_num){
         $('#truebutton').show().off("click").on("click",function(){
             clearInterval(interval)
             if (true_or_false==0){
-                feedback_text = "Correct, well done!"}
+                feedback_text = "Correct, well done!"
+                log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "true", "correct": "yes"}})
+            }
             else {
                 feedback_text = "Incorrect, keep trying!"
+                log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "true", "correct": "no"}})
+
             }
             seconds_remain = 5
             distractor_mental_arithmetic(game_num)
@@ -292,9 +296,12 @@ function distractor_mental_arithmetic(game_num){
         $('#falsebutton').show().off("click").on("click",function(){
             clearInterval(interval)
             if (true_or_false==0){
-                feedback_text = "Incorrect, keep trying!"}
+                feedback_text = "Incorrect, keep trying!"
+                log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "false", "correct": "no"}})
+            }
             else {
-                feedback_text = "Correct, well done!"}
+                feedback_text = "Correct, well done!"
+                log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "false", "correct": "yes"}})}
             seconds_remain = 5
             distractor_mental_arithmetic(game_num)
         })
