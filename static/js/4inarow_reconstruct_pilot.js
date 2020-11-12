@@ -15,6 +15,8 @@ var dismissed_click_prompt = false;
 var lastresult = "win"
 var task_type
 var game_data = {}
+var feedback_text="",     seconds_remain = 5
+
 
 
 function load_game_data(filename){
@@ -52,7 +54,7 @@ function reconstruction_all(game_num){
 
     timer = setTimeout(function(){
         play_next_move(game_num)
-    }, 5000)
+    }, 500)
 
 }
 
@@ -69,18 +71,20 @@ function play_next_move(game_num){
         mi++
         timer = setTimeout(
             function(){
-                play_next_move(game_num)},5000);
+                play_next_move(game_num)},500);
     }
     else{
         //add_piece(move,color);
         //show_last_move(move, color);
         total_steps = bp.filter(x => x==1).length + wp.filter(x => x==1).length
         //$(".canvas").empty()
+        seconds_remain = 5
         distractor_mental_arithmetic(game_num)
         timer = setTimeout(function (){
+            clearInterval(interval)
             $('#instructions').hide();
             $('.overlayed').hide();
-
+            feedback_text = ""
             load_game_start(game_num)
             user_move(game_num)
         },10000)
@@ -192,6 +196,7 @@ function check_all_reconstructed(total_steps){
 }
 function start_game(game_num){
     log_data({"event_type": "start game", "event_info" : {"game_num" : game_num}})
+    instructions_text = "Instruction"
     if(game_num<num_practice_games){
         task_type = 'practice'
         $('.gamecount').text("Practice game " + (game_num+1).toString() + " out of " + num_practice_games.toString());
@@ -218,6 +223,7 @@ function end_game(game_num){
             finish_experiment()
         }
         else if (game_num == num_practice_games -1){
+            $('#instructions h4').show().text("Instruction");
             show_instructions(0,instructions_text_after_practice,instructions_urls_after_practice,function(){
                 start_game(game_num+1)
             },"Start")
@@ -257,36 +263,6 @@ function generate_random_tf_euqations(){
 }
 
 
-function feedback_right_MA(game_num){
-    $('#truebutton').hide()
-    $('#falsebutton').hide()
-    $('#instructions h4').after("<p>" + "Correct. Click next to see the next question" + "</p>");
-    $('#previousbutton').hide()
-    $('#nextbutton').text('Next')
-    $('#nextbutton').show().off("click").on("click",function(){
-        //$('.overlayed').hide();
-        //$('#instructions').hide();
-        //load_game_start(game_num)
-        //user_move(game_num)
-        distractor_mental_arithmetic(game_num)
-    });
-
-}
-function feedback_wrong_MA(game_num){
-    $('#truebutton').hide()
-    $('#falsebutton').hide()
-    $('#instructions h4').after("<p>" + "Incorrect. Click next to see the next question" + "</p>");
-    $('#previousbutton').hide()
-    $('#nextbutton').text('Next')
-    $('#nextbutton').show().off("click").on("click",function(){
-        //$('#instructions').hide();
-        //$('.overlayed').hide();
-        //load_game_start(game_num)
-        //user_move(game_num)
-        distractor_mental_arithmetic(game_num)
-    });
-}
-
 
 function distractor_mental_arithmetic(game_num){
     display_list =generate_random_tf_euqations()
@@ -294,28 +270,41 @@ function distractor_mental_arithmetic(game_num){
     instructions_text = display_list[true_or_false]
     $('.overlayed').show();
     $('#instructions').show();
-    $('.headertext h1').hide();
     $('.previousbutton').hide();
-    $('#instructions p').remove();
-    $('#instructions h4').after("<p>" + instructions_text + "</p>");
-    if (true_or_false == 0){
+    $('#instructions h4').show().text(instructions_text);
+    $('#headertext h1').show().text("you have " + seconds_remain + " seconds left to complete this question");
+    $('#instructions p').show().text(feedback_text);
+
+    interval = setInterval(function(){
+        seconds_remain--
+        $('#instructions p').show().text("You have " + seconds_remain + " seconds left to complete this question");
         $('#truebutton').show().off("click").on("click",function(){
-            feedback_right_MA(game_num)}
-        )
+            clearInterval(interval)
+            if (true_or_false==0){
+                feedback_text = "Correct, well done!"}
+            else {
+                feedback_text = "Incorrect, keep trying!"
+            }
+            seconds_remain = 5
+            distractor_mental_arithmetic(game_num)
+        })
 
         $('#falsebutton').show().off("click").on("click",function(){
-            feedback_wrong_MA(game_num)})
-    }
-    else {
-        $('#truebutton').show().off("click").on("click",function(){
-            feedback_wrong_MA(game_num)}
-            )
+            clearInterval(interval)
+            if (true_or_false==0){
+                feedback_text = "Incorrect, keep trying!"}
+            else {
+                feedback_text = "Correct, well done!"}
+            seconds_remain = 5
+            distractor_mental_arithmetic(game_num)
+        })
+        if (seconds_remain ===0){
+            clearInterval(interval)
+            feedback_text = "Oops, missed!"
+            seconds_remain = 5
+            distractor_mental_arithmetic(game_num)}
 
-        $('#falsebutton').show().off("click").on("click",function(){
-            feedback_right_MA(game_num)}
-            )
-    }
-
+        }, 1000)
 }
 
 function show_instructions(i,texts,urls,callback,start_text){
@@ -370,14 +359,13 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "Click next to see the next circle, which will be white.",
         "That's all the circles for this demonstration." ,
         "In the real experiment, a circle will be added automatically every 5 seconds.",
-        "After seeing all the circles, you will need to complete some mental arithmetic task for 10 seconds.",
-        "You need to decide if the equation is true or false.",
-        "You will receive a feedback on your choice, click 'next' to see the next equation. ",
-        "You should complete as many of this task as possible in 10 seconds. ",
+        "After seeing all the circles, you will need to complete as many as mental arithmetic problems task for 10 seconds. You have up to 5 sec for each question. ",
+        "You need to decide if the equation is true or false.A timer under the question will show you the time you have left",
+        "The next question will show up after you made your choice. You will receive a feedback on your choice. ",
+        "The feedback will be displayed for 1 sec, and then the timer will show up again. ",
         "After 10 seconds of mental arithmetic, the initial screen will show up again.",
         "Your task is to recreate the occurrence of the 4-10 circles that you saw on the screen, in the order and location they appeared, by clicking on the location where they occurred the grid.",
-        "In the first circle, You can move your mouse to where you think the first circle appear.",
-        "You need to Click the mouse in the position to place the first circle, like shown here. ",
+        "In the first circle, You can move your mouse to where you think the first circle appear, and click there",
         "Repeat the process for the second circle",
         "Repeat the process for the third circle",
         "Repeat the process for the fourth circle",
@@ -398,7 +386,6 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "arithmetic2",
         "initial",
         "",
-        "mousem1",
         "m1_re",
         "m2_re",
         "m3_re",

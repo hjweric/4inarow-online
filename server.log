@@ -123,3 +123,7 @@ OperationalError: (psycopg2.OperationalError) could not translate host name "ec2
 2020-11-10 14:12:22,858 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
 2020-11-10 14:19:14,672 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
 2020-11-10 14:22:50,570 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-11 19:43:11,191 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-11 20:44:33,908 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-11 21:00:10,070 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-11 21:00:12,997 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
