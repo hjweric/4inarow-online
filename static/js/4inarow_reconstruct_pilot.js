@@ -54,7 +54,7 @@ function reconstruction_all(game_num){
 
     timer = setTimeout(function(){
         play_next_move(game_num)
-    }, 500)
+    }, 5000)
 
 }
 
@@ -71,7 +71,7 @@ function play_next_move(game_num){
         mi++
         timer = setTimeout(
             function(){
-                play_next_move(game_num)},500);
+                play_next_move(game_num)},5000);
     }
     else{
         //add_piece(move,color);
