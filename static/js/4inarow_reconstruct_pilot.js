@@ -317,7 +317,6 @@ function distractor_mental_arithmetic(game_num){
 function show_instructions(i,texts,urls,callback,start_text){
     log_data({"event_type": "show instructions", "event_info" : {"screen_number": i}})
     category = start_category
-    goFullscreen()
     $('#truebutton').hide()
     $('#falsebutton').hide()
     $('.overlayed').show();
