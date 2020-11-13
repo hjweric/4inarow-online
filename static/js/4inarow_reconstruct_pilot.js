@@ -48,7 +48,7 @@ function reconstruction_all(game_num){
     load_game_start(game_num)
     mi = 0
     steps = game_data[task_type][game_num-correction_index].length
-    $('#instructions h4').text("you have " + seconds_remain + " seconds left to decide whether this question is true or false:")
+    $('#instructions h4').text("you have " + seconds_remain + " seconds left to decide whether this equation is true or false:")
     $('.headertext h1').show().text('This sequence has ' + steps.toString() + ' steps').css('color', '#000000');
 
     log_data({"steps":steps, "bs":bp_start,"ws":wp_start})
@@ -268,7 +268,7 @@ function generate_random_tf_euqations(){
 
 function distractor_mental_arithmetic(game_num){
     seconds_remain = 5
-    $('#instructions p').show().text("You have " + seconds_remain + " seconds left to decide whether this question is true or false:");
+    $('#instructions p').show().text("You have " + seconds_remain + " seconds left to decide whether this equation is true or false:");
     display_list =generate_random_tf_euqations()
     true_or_false = Math.round(Math.random())
     equation = display_list[true_or_false]
@@ -282,7 +282,7 @@ function distractor_mental_arithmetic(game_num){
     interval = setInterval(function(){
         seconds_remain--
         $('#instructions h4').text("Instructions")
-        $('#instructions p').show().text("You have " + (seconds_remain).toString() + " seconds left to decide whether this question is true or false:" );
+        $('#instructions p').show().text("You have " + (seconds_remain).toString() + " seconds left to decide whether this equation is true or false:" );
         $('#truebutton').show().off("click").on("click",function(){
             clearInterval(interval)
             if (true_or_false==0){
