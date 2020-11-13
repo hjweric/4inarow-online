@@ -1,4 +1,4 @@
-var b,bp,wp,user_color,m,num_games,num_practice_games, current_color, gi,mi, current_move, player_save,gi_save,mi_save, steps, move_left,correction_index
+var b,bp,wp,user_color,m,num_games,num_practice_games, current_color, gi,mi, current_move, player_save,gi_save,mi_save, steps, move_left,correction_index, equation
 var total_steps, level
 var tiles = [];
 var game_status = "ready"
@@ -54,7 +54,7 @@ function reconstruction_all(game_num){
 
     timer = setTimeout(function(){
         play_next_move(game_num)
-    }, 5000)
+    }, 500)
 
 }
 
@@ -71,20 +71,20 @@ function play_next_move(game_num){
         mi++
         timer = setTimeout(
             function(){
-                play_next_move(game_num)},5000);
+                play_next_move(game_num)},500);
     }
     else{
         //add_piece(move,color);
         //show_last_move(move, color);
         total_steps = bp.filter(x => x==1).length + wp.filter(x => x==1).length
         //$(".canvas").empty()
-        seconds_remain = 5
         distractor_mental_arithmetic(game_num)
         timer = setTimeout(function (){
             clearInterval(interval)
             $('#instructions').hide();
             $('.overlayed').hide();
             feedback_text = ""
+            seconds_remain = 5
             load_game_start(game_num)
             user_move(game_num)
         },10000)
@@ -154,6 +154,7 @@ function show_last_move(i, color) {
 
 
 function user_move(game_num) {
+    $('.clickprompt').show()
     if (bp.filter(x => x==1).length == wp.filter(x => x==1).length){
         current_color = 0}
     else {current_color = 1}
@@ -175,13 +176,13 @@ function user_move(game_num) {
         log_data({"event_type": "user move", "event_info" : {"tile" : tile_ind, "bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string,  "game_num": game_num}})
         add_piece(tile_ind,current_color);
         show_last_move(tile_ind, current_color);
-        $(".clickprompt").hide();
         dismissed_click_prompt = true;
         //winning_pieces = check_win(user_color)    // DON'T WANT TO SHOW WIN ANY POINT IN THE GAME
         if (bp.filter(x => x==1).length + wp.filter(x => x==1).length == total_steps){
             //show_win(current_color,winning_pieces)
             log_data({"event_type": "reconstruction over", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "game_num":game_num}})
             $('.headertext h1').text('Reconstruction over').css('color', '#000000');
+            $('.clickprompt').hide()
             end_game(game_num)
         }
         else {
@@ -208,7 +209,6 @@ function start_game(game_num){
         correction_index =2
     }
     reconstruction_all(game_num)
-    if (!dismissed_click_prompt) $('.clickprompt').show();
     log_data({"event_type": "start game", "event_info": {"game_num": game_num, "is_practice": game_num<num_practice_games,"user_color" : (user_color == 0 ? 'black' : 'white')}})
 }
 
@@ -223,6 +223,7 @@ function end_game(game_num){
             finish_experiment()
         }
         else if (game_num == num_practice_games -1){
+            $('#instructions h3').show().text("");
             $('#instructions h4').show().text("Instruction");
             show_instructions(0,instructions_text_after_practice,instructions_urls_after_practice,function(){
                 start_game(game_num+1)
@@ -267,16 +268,19 @@ function generate_random_tf_euqations(){
 function distractor_mental_arithmetic(game_num){
     display_list =generate_random_tf_euqations()
     true_or_false = Math.round(Math.random())
-    instructions_text = display_list[true_or_false]
+    equation = display_list[true_or_false]
     $('.overlayed').show();
     $('#instructions').show();
     $('.previousbutton').hide();
-    $('#instructions h4').show().text(instructions_text);
-    $('#headertext h1').show().text("you have " + seconds_remain + " seconds left to complete this question");
-    $('#instructions p').show().text(feedback_text);
+    $('#instructions h4').show().text(feedback_text);
+    $('#instructions h3').show().text(equation);
+    seconds_remain = 5
+    $('#headertext h1').show().text("you have " + seconds_remain + " seconds left to decide whether this question is true or false:");
+
 
     interval = setInterval(function(){
         seconds_remain--
+        $('#instructions h4').hide()
         $('#instructions p').show().text("You have " + seconds_remain + " seconds left to complete this question");
         $('#truebutton').show().off("click").on("click",function(){
             clearInterval(interval)
@@ -289,7 +293,7 @@ function distractor_mental_arithmetic(game_num){
                 log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "true", "correct": "no"}})
 
             }
-            seconds_remain = 5
+
             distractor_mental_arithmetic(game_num)
         })
 
@@ -302,13 +306,11 @@ function distractor_mental_arithmetic(game_num){
             else {
                 feedback_text = "Correct, well done!"
                 log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "false", "correct": "yes"}})}
-            seconds_remain = 5
             distractor_mental_arithmetic(game_num)
         })
         if (seconds_remain ===0){
             clearInterval(interval)
             feedback_text = "Oops, missed!"
-            seconds_remain = 5
             distractor_mental_arithmetic(game_num)}
 
         }, 1000)
