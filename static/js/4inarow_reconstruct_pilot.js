@@ -268,13 +268,14 @@ function generate_random_tf_euqations(){
 
 function distractor_mental_arithmetic(game_num){
     seconds_remain = 4
-    $('#instructions p').show().text("You have " + seconds_remain + " seconds left to decide whether this equation is true or false:");
     display_list =generate_random_tf_euqations()
     true_or_false = Math.round(Math.random())
     equation = display_list[true_or_false]
     $('.overlayed').show();
     $('#instructions').show();
     $('.previousbutton').hide();
+    $('#instructions h4').text("Instruction");
+    $('#instructions p').show().text("You have " + seconds_remain + " seconds left to decide whether this equation is true or false:");
     $('#instructions h3').show().text(equation);
     $('#truebutton').show().off("click").on("click",function(){
         clearInterval(interval)
