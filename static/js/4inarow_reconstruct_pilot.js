@@ -314,6 +314,8 @@ function distractor_mental_arithmetic(game_num){
         }, 1000)
 }
 function show_feedback_and_move_on(game_num) {
+    $('#truebutton').hide()
+    $('#falsebutton').hide()
     $('#instructions h4').show().text(feedback_text);
     $('#instructions h3').hide()
     $('#instructions p').hide()
@@ -375,11 +377,11 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "Click next to see the next circle, which will be white.",
         "That's all the circles for this demonstration." ,
         "In the real experiment, a circle will be added automatically every 5 seconds.",
-        "After seeing all the circles, you will need to complete as many as mental arithmetic problems task for 10 seconds. You have up to 5 sec for each question. ",
-        "You need to decide if the equation is true or false.A timer under the question will show you the time you have left",
-        "The next question will show up after you made your choice. You will receive a feedback on your choice. ",
-        "The feedback will be displayed for 1 sec, and then the timer will show up again. ",
-        "After 10 seconds of mental arithmetic, the initial screen will show up again.",
+        "After seeing all the circles, you will need to complete as many as mental arithmetic tasks for 14 seconds. You have up to 4 sec for each equation. ",
+        "You need to decide if the equation is true or false. A timer will show you the time you have left",
+        "You will receive a feedback on your choice. ",
+        "The feedback will be displayed for 1 sec, and then the next equation will show up. ",
+        "After the 14 seconds of mental arithmetic, the initial screen will show up again.",
         "Your task is to recreate the occurrence of the 4-10 circles that you saw on the screen, in the order and location they appeared, by clicking on the location where they occurred the grid.",
         "In the first circle, You can move your mouse to where you think the first circle appear, and click there",
         "Repeat the process for the second circle",
