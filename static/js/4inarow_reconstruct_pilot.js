@@ -15,7 +15,7 @@ var dismissed_click_prompt = false;
 var lastresult = "win"
 var task_type
 var game_data = {}
-var feedback_text="Instructions",     seconds_remain = 5
+var feedback_text="Instructions",     seconds_remain = 4
 
 
 
@@ -48,7 +48,6 @@ function reconstruction_all(game_num){
     load_game_start(game_num)
     mi = 0
     steps = game_data[task_type][game_num-correction_index].length
-    $('#instructions h4').text("you have " + seconds_remain + " seconds left to decide whether this equation is true or false:")
     $('.headertext h1').show().text('This sequence has ' + steps.toString() + ' steps').css('color', '#000000');
 
     log_data({"steps":steps, "bs":bp_start,"ws":wp_start})
@@ -81,14 +80,14 @@ function play_next_move(game_num){
         //$(".canvas").empty()
         distractor_mental_arithmetic(game_num)
         timer = setTimeout(function (){
+            clearTimeout(timer2)
             clearInterval(interval)
             $('#instructions').hide();
             $('.overlayed').hide();
             feedback_text = "Instructions"
-            seconds_remain = 5
             load_game_start(game_num)
             user_move(game_num)
-        },10000)
+        },14000)
     }
 }
 
@@ -226,6 +225,7 @@ function end_game(game_num){
         else if (game_num == num_practice_games -1){
             $('#instructions h3').show().text("");
             $('#instructions h4').show().text("Instruction");
+            $('#nextbutton').show()
             show_instructions(0,instructions_text_after_practice,instructions_urls_after_practice,function(){
                 start_game(game_num+1)
             },"Start")
@@ -267,7 +267,7 @@ function generate_random_tf_euqations(){
 
 
 function distractor_mental_arithmetic(game_num){
-    seconds_remain = 5
+    seconds_remain = 4
     $('#instructions p').show().text("You have " + seconds_remain + " seconds left to decide whether this equation is true or false:");
     display_list =generate_random_tf_euqations()
     true_or_false = Math.round(Math.random())
@@ -275,48 +275,53 @@ function distractor_mental_arithmetic(game_num){
     $('.overlayed').show();
     $('#instructions').show();
     $('.previousbutton').hide();
-    $('#instructions h4').show().text(feedback_text);
     $('#instructions h3').show().text(equation);
+    $('#truebutton').show().off("click").on("click",function(){
+        clearInterval(interval)
+        if (true_or_false==0){
+            feedback_text = "Correct, well done!"
+            log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "true", "correct": "yes"}})
+        }
+        else {
+            feedback_text = "Incorrect, keep trying!"
+            log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "true", "correct": "no"}})
+        }
+        show_feedback_and_move_on(game_num)
+    })
 
+    $('#falsebutton').show().off("click").on("click",function(){
+        clearInterval(interval)
+        if (true_or_false==0){
+            feedback_text = "Incorrect, keep trying!"
+            log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "false", "correct": "no"}})
+        }
+        else {
+            feedback_text = "Correct, well done!"
+            log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "false", "correct": "yes"}})}
+
+        show_feedback_and_move_on(game_num)
+    })
 
     interval = setInterval(function(){
         seconds_remain--
         $('#instructions h4').text("Instructions")
         $('#instructions p').show().text("You have " + (seconds_remain).toString() + " seconds left to decide whether this equation is true or false:" );
-        $('#truebutton').show().off("click").on("click",function(){
-            clearInterval(interval)
-            if (true_or_false==0){
-                feedback_text = "Correct, well done!"
-                log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "true", "correct": "yes"}})
-            }
-            else {
-                feedback_text = "Incorrect, keep trying!"
-                log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "true", "correct": "no"}})
 
-            }
-
-            distractor_mental_arithmetic(game_num)
-        })
-
-        $('#falsebutton').show().off("click").on("click",function(){
-            clearInterval(interval)
-            if (true_or_false==0){
-                feedback_text = "Incorrect, keep trying!"
-                log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "false", "correct": "no"}})
-            }
-            else {
-                feedback_text = "Correct, well done!"
-                log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "false", "correct": "yes"}})}
-            distractor_mental_arithmetic(game_num)
-        })
         if (seconds_remain ===0){
             clearInterval(interval)
             feedback_text = "Oops, missed!"
-            distractor_mental_arithmetic(game_num)}
-
+            show_feedback_and_move_on(game_num)}
         }, 1000)
 }
-
+function show_feedback_and_move_on(game_num) {
+    $('#instructions h4').show().text(feedback_text);
+    $('#instructions h3').hide()
+    $('#instructions p').hide()
+    timer2 = setTimeout(function (){
+        $('#instructions h4').show().text("Instructions");
+        distractor_mental_arithmetic(game_num)
+        },1000)
+}
 function show_instructions(i,texts,urls,callback,start_text){
     log_data({"event_type": "show instructions", "event_info" : {"screen_number": i}})
     category = start_category
@@ -345,6 +350,8 @@ function show_instructions(i,texts,urls,callback,start_text){
         $('#nextbutton').off("click").on("click",function(){
             $('#instructions').hide();
             $('.overlayed').hide();
+            $('#previousbutton').hide()
+            $('#nextbutton').hide()
             callback();
         })
     }
