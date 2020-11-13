@@ -15,7 +15,7 @@ var dismissed_click_prompt = false;
 var lastresult = "win"
 var task_type
 var game_data = {}
-var feedback_text="",     seconds_remain = 5
+var feedback_text="Instructions",     seconds_remain = 5
 
 
 
@@ -84,7 +84,7 @@ function play_next_move(game_num){
             clearInterval(interval)
             $('#instructions').hide();
             $('.overlayed').hide();
-            feedback_text = ""
+            feedback_text = "Instructions"
             seconds_remain = 5
             load_game_start(game_num)
             user_move(game_num)
@@ -281,7 +281,7 @@ function distractor_mental_arithmetic(game_num){
 
     interval = setInterval(function(){
         seconds_remain--
-        $('#instructions h4').hide()
+        $('#instructions h4').text("Instructions")
         $('#instructions p').show().text("You have " + (seconds_remain).toString() + " seconds left to decide whether this question is true or false:" );
         $('#truebutton').show().off("click").on("click",function(){
             clearInterval(interval)
