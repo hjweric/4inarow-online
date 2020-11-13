@@ -304,7 +304,7 @@ function distractor_mental_arithmetic(game_num){
 
     interval = setInterval(function(){
         seconds_remain--
-        $('#instructions h4').text("Instructions")
+        $('#instructions h4').text("Instruction")
         $('#instructions p').show().text("You have " + (seconds_remain).toString() + " seconds left to decide whether this equation is true or false:" );
 
         if (seconds_remain ===0){
@@ -320,7 +320,7 @@ function show_feedback_and_move_on(game_num) {
     $('#instructions h3').hide()
     $('#instructions p').hide()
     timer2 = setTimeout(function (){
-        $('#instructions h4').show().text("Instructions");
+        $('#instructions h4').show().text("Instruction");
         distractor_mental_arithmetic(game_num)
         },1000)
 }
