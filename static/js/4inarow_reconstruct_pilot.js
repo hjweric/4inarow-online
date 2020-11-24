@@ -91,13 +91,6 @@ function play_next_move(game_num){
     }
 }
 
-function get_level_game(){
-    if (game_data[player][gi][0]>1000){
-        return game_data[player][gi][0][4]
-    }
-    else {return  game_data[player][gi][1][4]}
-}
-
 
 
 //function select_random_board(game_num) {
@@ -152,6 +145,12 @@ function show_last_move(i, color) {
     }
 }
 
+function withdraw_previous_move(game_num,tile_ind){
+    remove_piece(tile_ind)
+    log_data({"event_type": "withdrawn", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string, "game_num": game_num}})
+
+    user_move(game_num)
+}
 
 function user_move(game_num) {
     $('.clickprompt').show()
@@ -183,12 +182,18 @@ function user_move(game_num) {
             log_data({"event_type": "reconstruction over", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "game_num":game_num}})
             $('.headertext h1').text('Reconstruction over').css('color', '#000000');
             $('.clickprompt').hide()
+            $("#withdrawbutton").hide()
             end_game(game_num)
         }
         else {
             steps--
-            user_move(game_num)
-        }
+            $("#withdrawbutton").show().css({"display" :"inline"}).off("click").on("click",function(){
+                $("#withdrawbutton").hide();
+                steps++
+                remove_piece(tile_ind)
+                user_move(game_num)
+            })
+            user_move(game_num)}
     });
 }
 
@@ -196,6 +201,7 @@ function check_all_reconstructed(total_steps){
     return bp.filter(x => x==1).length + wp.filter(x => x==1).length == total_steps;
 }
 function start_game(game_num){
+
     log_data({"event_type": "start game", "event_info" : {"game_num" : game_num}})
     instructions_text = "Instruction"
     if(game_num<num_practice_games){
@@ -273,7 +279,7 @@ function distractor_mental_arithmetic(game_num){
     equation = display_list[true_or_false]
     $('.overlayed').show();
     $('#instructions').show();
-    $('.previousbutton').hide();
+    $('#previousbutton').hide();
     $('#instructions h4').text("Instruction");
     $('#instructions p').show().text("You have " + seconds_remain + " seconds left to decide whether this equation is true or false:");
     $('#instructions h3').show().text(equation);
@@ -311,7 +317,8 @@ function distractor_mental_arithmetic(game_num){
         if (seconds_remain ===0){
             clearInterval(interval)
             feedback_text = "Oops, missed!"
-            show_feedback_and_move_on(game_num)}
+            show_feedback_and_move_on(game_num)
+        }
         }, 1000)
 }
 function show_feedback_and_move_on(game_num) {
@@ -385,7 +392,9 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "After the 14 seconds of mental arithmetic, the initial screen will show up again.",
         "Your task is to recreate the occurrence of the 4-10 circles that you saw on the screen, in the order and location they appeared, by clicking on the location where they occurred the grid.",
         "In the first circle, You can move your mouse to where you think the first circle appear, and click there",
-        "Repeat the process for the second circle",
+        "Place the second circle. Here, a mistake was made. You can click the Undo button to remove the circle you just placed.",
+        "The wrong circle has been removed.",
+        "You can now place the second circle. ",
         "Repeat the process for the third circle",
         "Repeat the process for the fourth circle",
         "You will now play " + _num_practice_games.toString() + " practice games. Click start to begin."
@@ -405,6 +414,8 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "arithmetic2",
         "initial",
         "",
+        "m1_re",
+        "m2_wrong",
         "m1_re",
         "m2_re",
         "m3_re",
@@ -455,6 +466,7 @@ function shuffle(array) {
 
 
 function start_experiment(response){
+    $("#withdrawbutton").hide()
     game_data=response
     // start_color = Math.round(Math.random())
     // log_data({"start_color": start_color})
