@@ -188,6 +188,7 @@ function user_move(game_num) {
         else {
             steps--
             $("#withdrawbutton").show().css({"display" :"inline"}).off("click").on("click",function(){
+                log_data({"event_type": "withdrawn", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string, "game_num": game_num}})
                 $("#withdrawbutton").hide();
                 steps++
                 remove_piece(tile_ind)
