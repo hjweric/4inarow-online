@@ -393,7 +393,7 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "Your task is to recreate the occurrence of the 4-10 circles that you saw on the screen, in the order and location they appeared, by clicking on the location where they occurred the grid.",
         "In the first circle, You can move your mouse to where you think the first circle appear, and click there",
         "Place the second circle. Here, a mistake was made. You can click the Undo button to remove the circle you just placed.",
-        "The wrong circle has been removed.",
+        "The wrong circle has been removed. You can only remove one circle after placing one. ",
         "You can now place the second circle. ",
         "Repeat the process for the third circle",
         "Repeat the process for the fourth circle",
