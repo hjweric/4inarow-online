@@ -205,3 +205,4 @@ WHERE "4inarow".workerid = %(workerid_1)s AND "4inarow".assignmentid = %(assignm
 (Background on this error at: http://sqlalche.me/e/13/e3q8)
 2020-11-24 14:46:50,239 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
 2020-11-24 14:51:43,253 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-11-24 15:01:04,099 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}

@@ -15,7 +15,7 @@ var dismissed_click_prompt = false;
 var lastresult = "win"
 var task_type
 var game_data = {}
-var feedback_text="Instructions",     seconds_remain = 4
+var feedback_text="Instructions",     seconds_remain = 6
 
 
 
@@ -274,7 +274,7 @@ function generate_random_tf_euqations(){
 
 
 function distractor_mental_arithmetic(game_num){
-    seconds_remain = 4
+    seconds_remain = 6
     display_list =generate_random_tf_euqations()
     true_or_false = Math.round(Math.random())
     equation = display_list[true_or_false]
@@ -386,16 +386,16 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "Click next to see the next circle, which will be white.",
         "That's all the circles for this demonstration." ,
         "In the real experiment, a circle will be added automatically every 5 seconds.",
-        "After seeing all the circles, you will need to complete as many as mental arithmetic tasks for 14 seconds. You have up to 4 sec for each equation. ",
+        "After seeing all the circles, you will need to complete as many as mental arithmetic tasks for 14 seconds. You have up to 6 sec for each equation. ",
         "You need to decide if the equation is true or false. A timer will show you the time you have left",
         "You will receive a feedback on your choice. ",
         "The feedback will be displayed for 1 sec, and then the next equation will show up. ",
         "After the 14 seconds of mental arithmetic, the initial screen will show up again.",
         "Your task is to recreate the occurrence of the 4-10 circles that you saw on the screen, in the order and location they appeared, by clicking on the location where they occurred the grid.",
         "In the first circle, You can move your mouse to where you think the first circle appear, and click there",
-        "Place the second circle. Here, a mistake was made. You can click the Undo button to remove the circle you just placed.",
+        "Place the second circle. Note that a mistake was made here. You can click the Undo button to remove the circle just placed. (You won't be notified that you made a mistake)",
         "The wrong circle has been removed. You can only remove one circle after placing one. ",
-        "You can now place the second circle. ",
+        "You can then place the second circle. ",
         "Repeat the process for the third circle",
         "Repeat the process for the fourth circle",
         "You will now play " + _num_practice_games.toString() + " practice games. Click start to begin."
