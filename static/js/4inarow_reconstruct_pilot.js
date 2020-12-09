@@ -428,7 +428,7 @@ function initialize_task(_num_games,_num_practice_games,callback){
     instructions_urls_after_practice = [""]
 
 
-    instructions_text_finished = ["Thank you for playing!"]
+    instructions_text_finished = ["Thank you for completing the task! Did you noticed that the sequence you're shown is drawn from a game? Next you'll play the game yourself! You'll now be redirected to the page of the game, where instructions on how to play the game will be given."]
 
     instructions_urls_finished = [""]
     callback()
