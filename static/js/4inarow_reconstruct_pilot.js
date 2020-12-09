@@ -227,6 +227,9 @@ function end_game(game_num){
         $("#nextgamebutton").hide()
         $(".canvas").empty();
         if(game_num == num_practice_games + num_games-1){
+            $('#instructions h3').show().text("");
+            $('#instructions h4').show().text("Instruction");
+            $('#nextbutton').show()
             show_instructions(0, instructions_text_finished, instructions_urls_finished, function(){
                 finish_experiment()
             })

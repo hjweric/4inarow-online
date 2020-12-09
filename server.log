@@ -206,3 +206,42 @@ WHERE "4inarow".workerid = %(workerid_1)s AND "4inarow".assignmentid = %(assignm
 2020-11-24 14:46:50,239 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
 2020-11-24 14:51:43,253 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
 2020-11-24 15:01:04,099 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+[2020-12-09 17:23:57 +0000] [7497] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2020-12-09 17:23:57 +0000] [7497] [ERROR] Retrying in 1 second.
+[2020-12-09 17:23:58 +0000] [7497] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2020-12-09 17:23:58 +0000] [7497] [ERROR] Retrying in 1 second.
+[2020-12-09 17:23:59 +0000] [7497] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2020-12-09 17:23:59 +0000] [7497] [ERROR] Retrying in 1 second.
+[2020-12-09 17:23:59 +0000] [7497] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2020-12-09 17:23:59 +0000] [7497] [ERROR] Retrying in 1 second.
+[2020-12-09 17:24:00 +0000] [7497] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2020-12-09 17:24:00 +0000] [7497] [ERROR] Retrying in 1 second.
+[2020-12-09 17:24:01 +0000] [7497] [ERROR] Can't connect to ('0.0.0.0', 22362)
+[2020-12-09 17:24:22 +0000] [7509] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2020-12-09 17:24:22 +0000] [7509] [ERROR] Retrying in 1 second.
+[2020-12-09 17:24:23 +0000] [7509] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2020-12-09 17:24:23 +0000] [7509] [ERROR] Retrying in 1 second.
+[2020-12-09 17:24:24 +0000] [7509] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2020-12-09 17:24:24 +0000] [7509] [ERROR] Retrying in 1 second.
+[2020-12-09 17:24:25 +0000] [7509] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2020-12-09 17:24:25 +0000] [7509] [ERROR] Retrying in 1 second.
+[2020-12-09 17:24:26 +0000] [7509] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2020-12-09 17:24:26 +0000] [7509] [ERROR] Retrying in 1 second.
+[2020-12-09 17:24:27 +0000] [7509] [ERROR] Can't connect to ('0.0.0.0', 22362)
+[2020-12-09 17:24:54 +0000] [7587] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2020-12-09 17:24:54 +0000] [7587] [ERROR] Retrying in 1 second.
+[2020-12-09 17:24:55 +0000] [7587] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2020-12-09 17:24:55 +0000] [7587] [ERROR] Retrying in 1 second.
+[2020-12-09 17:24:56 +0000] [7587] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2020-12-09 17:24:56 +0000] [7587] [ERROR] Retrying in 1 second.
+[2020-12-09 17:24:57 +0000] [7587] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2020-12-09 17:24:57 +0000] [7587] [ERROR] Retrying in 1 second.
+[2020-12-09 17:24:58 +0000] [7587] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2020-12-09 17:24:58 +0000] [7587] [ERROR] Retrying in 1 second.
+[2020-12-09 17:24:59 +0000] [7587] [ERROR] Can't connect to ('0.0.0.0', 22362)
+2020-12-09 17:25:03,500 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-12-09 17:25:06,509 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debu'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-12-09 17:27:21,595 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-12-09 17:27:24,472 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debu'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-12-09 17:27:46,407 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2020-12-09 17:28:17,899 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
