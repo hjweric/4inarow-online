@@ -38,7 +38,7 @@ $(window).on('load', function() {
 	return saveData()
 		.then(function() {
 			return setTimeout(function(){
-				initialize_task(28,2,function(){
+				initialize_task(2,2,function(){
 				load_game_data("https://raw.githubusercontent.com/hjweric/fourinarow/master/data/formal_stimuli_s1.json");
 				})
 			},100);
