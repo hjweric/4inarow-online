@@ -207,12 +207,12 @@ function start_game(game_num){
     instructions_text = "Instruction"
     if(game_num<num_practice_games){
         task_type = 'practice'
-        $('.gamecount').text("Practice game " + (game_num+1).toString() + " out of " + num_practice_games.toString());
+        $('.gamecount').text("Practice sequence " + (game_num+1).toString() + " out of " + num_practice_games.toString());
         correction_index =0
     }
     else{
         task_type = "formal"
-        $('.gamecount').text("Game " + (game_num-num_practice_games+1).toString() + " out of " + num_games.toString());
+        $('.gamecount').text("Sequence " + (game_num-num_practice_games+1).toString() + " out of " + num_games.toString());
         correction_index =2
     }
     reconstruction_all(game_num)
@@ -391,7 +391,7 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "Click next to see the next circle, which will be white.",
         "That's all the circles for this demonstration." ,
         "In the real experiment, a circle will be added automatically every 5 seconds.",
-        "After seeing all the circles, you will need to complete as many as mental arithmetic tasks for 14 seconds. You have up to 6 sec for each equation. ",
+        "After seeing all the circles, you will need to complete as many mental arithmetic tasks as possible for 14 seconds. You have up to 6 sec for each question. ",
         "You need to decide if the equation is true or false. A timer will show you the time you have left",
         "You will receive a feedback on your choice. ",
         "The feedback will be displayed for 1 sec, and then the next equation will show up. ",
