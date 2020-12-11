@@ -207,12 +207,12 @@ function start_game(game_num){
     instructions_text = "Instruction"
     if(game_num<num_practice_games){
         task_type = 'practice'
-        $('.gamecount').text("Practice game " + (game_num+1).toString() + " out of " + num_practice_games.toString());
+        $('.gamecount').text("Practice sequence " + (game_num+1).toString() + " out of " + num_practice_games.toString());
         correction_index =0
     }
     else{
         task_type = "formal"
-        $('.gamecount').text("Game " + (game_num-num_practice_games+1).toString() + " out of " + num_games.toString());
+        $('.gamecount').text("Sequence " + (game_num-num_practice_games+1).toString() + " out of " + num_games.toString());
         correction_index =2
     }
     reconstruction_all(game_num)
@@ -227,7 +227,12 @@ function end_game(game_num){
         $("#nextgamebutton").hide()
         $(".canvas").empty();
         if(game_num == num_practice_games + num_games-1){
-            finish_experiment()
+            $('#instructions h3').show().text("");
+            $('#instructions h4').show().text("Instruction");
+            $('#nextbutton').show()
+            show_instructions(0, instructions_text_finished, instructions_urls_finished, function(){
+                finish_experiment()
+            })
         }
         else if (game_num == num_practice_games -1){
             $('#instructions h3').show().text("");
@@ -318,9 +323,10 @@ function distractor_mental_arithmetic(game_num){
         if (seconds_remain ===0){
             clearInterval(interval)
             feedback_text = "Oops, missed!"
+            log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "true", "correct": "missed"}})
             show_feedback_and_move_on(game_num)
         }
-        }, 1000)
+    }, 1000)
 }
 function show_feedback_and_move_on(game_num) {
     $('#truebutton').hide()
@@ -331,7 +337,7 @@ function show_feedback_and_move_on(game_num) {
     timer2 = setTimeout(function (){
         $('#instructions h4').show().text("Instruction");
         distractor_mental_arithmetic(game_num)
-        },1000)
+    },1000)
 }
 function show_instructions(i,texts,urls,callback,start_text){
     log_data({"event_type": "show instructions", "event_info" : {"screen_number": i}})
@@ -378,22 +384,25 @@ function initialize_task(_num_games,_num_practice_games,callback){
     num_games = _num_games
     num_practice_games = _num_practice_games
     user_color = 0
-    instructions_text = ["You will be seeing black and white circles appearing on a grid, and your task is to remember the order and location in which the circles occur.",
-        "There will be circles on the initial screen, and it will be shown for 5 seconds.",
-        "Then, you will see several circles (the number of circles range from 4-10) appear on the screen, one at a time. Click next to see the first circle. ",
-        "The first circle you see will always be a black circle. Click next to see the next circle, which will be white.",
-        "Click next to see the next circle, which will be black.",
-        "Click next to see the next circle, which will be white.",
-        "That's all the circles for this demonstration." ,
+    instructions_text = ["Thank you for returning to the study! Now you will be completing the same memory task as in part 1. I will firstly go through the rules of the 4-in-a-row, and show you the same instructions as you saw last time for the memory task.",
+        "In the 4-in-a-row game, two players play black or white pieces on a game board.",
+        "The aim of the game is to get four pieces of the player's color in a row.",
+        "The player can win by putting four pieces in a row in any directions.",
+        "The memory task is drawn from the real data of the game. You will firstly see the initial board state for 5 seconds.",
+        "Then, you will see pieces (the number ranges from 4-10) appear on the screen, one at a time. Click next to see the first piece. ",
+        "The first piece you see will always be a black piece. Click next to see the next piece, which will be white.",
+        "Click next to see the next piece, which will be black.",
+        "Click next to see the next piece, which will be white.",
+        "That's all the pieces for this demonstration." ,
         "In the real experiment, a circle will be added automatically every 5 seconds.",
-        "After seeing all the circles, you will need to complete as many as mental arithmetic tasks for 14 seconds. You have up to 6 sec for each equation. ",
+        "After seeing all the circles, you will need to complete as many mental arithmetic tasks as possible for 14 seconds. You have up to 6 sec for each question. ",
         "You need to decide if the equation is true or false. A timer will show you the time you have left",
         "You will receive a feedback on your choice. ",
         "The feedback will be displayed for 1 sec, and then the next equation will show up. ",
         "After the 14 seconds of mental arithmetic, the initial screen will show up again.",
-        "Your task is to recreate the occurrence of the 4-10 circles that you saw on the screen, in the order and location they appeared, by clicking on the location where they occurred the grid.",
-        "In the first circle, You can move your mouse to where you think the first circle appear, and click there",
-        "Place the second circle. Note that a mistake was made here. You can click the Undo button to remove the circle just placed. (You won't be notified that you made a mistake)",
+        "Your task is to reconstruct of the 4-10 game moves that you saw on the screen, in the order and location they appeared, by clicking on the location where they occurred the grid.",
+        "You can move your mouse to where you think the first piece appear, and click there",
+        "Place the second piece. Note that a mistake was made here. You can click the Undo button to remove the piece just placed. (You won't be notified that you made a mistake)",
         "The wrong circle has been removed. You can only remove one circle after placing one. ",
         "You can then place the second circle. ",
         "Repeat the process for the third circle",
@@ -402,6 +411,9 @@ function initialize_task(_num_games,_num_practice_games,callback){
     ]
 
     instructions_urls = ["",
+        "black-about-to-win",
+        "black-won",
+        "black-won-diagonal",
         "initial",
         "",
         "m1",
@@ -428,7 +440,7 @@ function initialize_task(_num_games,_num_practice_games,callback){
     instructions_urls_after_practice = [""]
 
 
-    instructions_text_finished = ["Thank you for playing!"]
+    instructions_text_finished = ["Thank you for completing the task! Did you noticed that the sequence you're shown is drawn from a game? Next you'll play the game yourself! You'll now be redirected to the page of the game, where instructions on how to play the game will be given. It might take a while for the game to load, please be patient! "]
 
     instructions_urls_finished = [""]
     callback()

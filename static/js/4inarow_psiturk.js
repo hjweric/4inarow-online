@@ -39,7 +39,7 @@ $(window).on('load', function() {
 		.then(function() {
 			return setTimeout(function(){
 				initialize_task(28,2,function(){
-				load_game_data("https://raw.githubusercontent.com/hjweric/fourinarow/master/data/formal_stimuli_s1.json");
+				load_game_data("https://raw.githubusercontent.com/hjweric/fourinarow/master/data/formal_stimuli_s2.json");
 				})
 			},100);
 		}).catch(handleError);
