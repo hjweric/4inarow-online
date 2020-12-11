@@ -323,6 +323,7 @@ function distractor_mental_arithmetic(game_num){
         if (seconds_remain ===0){
             clearInterval(interval)
             feedback_text = "Oops, missed!"
+            log_data({"event_type": "MA_done", "event_info" : {"question" : instructions_text, "answer" : "true", "correct": "missed"}})
             show_feedback_and_move_on(game_num)
         }
         }, 1000)
