@@ -16,7 +16,7 @@ contact_email_on_error = jh4290@columbia.edu
 allow_repeats = true
 
 [Database Parameters]
-#database_url = postgres://mlnudtuhulzyyz:7f6419d9f22cae00f86075cf47ac448d38b0f86aefea2cf95361c915641ffcf4@ec2-3-220-98-137.compute-1.amazonaws.com:5432/d8jbmtvi68sthg
+database_url = postgres://mlnudtuhulzyyz:7f6419d9f22cae00f86075cf47ac448d38b0f86aefea2cf95361c915641ffcf4@ec2-3-220-98-137.compute-1.amazonaws.com:5432/d8jbmtvi68sthg
 
 
 
@@ -56,5 +56,5 @@ persistent_history_file = .psiturk_history
 #   https:///ad 
 
 use_psiturk_ad_server = false
-#ad_location = https://finarow-pilot2-session2.herokuapp.com/pub
+ad_location = https://finarow-pilot2-session2.herokuapp.com/pub
 
