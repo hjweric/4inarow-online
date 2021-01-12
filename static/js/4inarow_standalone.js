@@ -8,6 +8,7 @@ function get_image_path(filename){
 	return "../static/images/" + filename;
 }
 
+
 function save(data,filename){
 	var blob = new Blob([JSON.stringify(data)], {type: 'text/csv'});
 	var elem = window.document.createElement('a');
