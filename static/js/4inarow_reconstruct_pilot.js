@@ -340,6 +340,7 @@ function show_feedback_and_move_on(game_num) {
         },1000)
 }
 function show_instructions(i,texts,urls,callback,start_text){
+    goFullscreen()
     log_data({"event_type": "show instructions", "event_info" : {"screen_number": i}})
     category = start_category
     $('#truebutton').hide()
@@ -384,7 +385,8 @@ function initialize_task(_num_games,_num_practice_games,callback){
     num_games = _num_games
     num_practice_games = _num_practice_games
     user_color = 0
-    instructions_text = ["You will be seeing black and white circles appearing on a grid, and your task is to remember the ORDER and location in which the circles occur. ",
+    instructions_text = ["Please do not refresh the website at any point during the game, as it will mess up the data. ",
+        "You will be seeing black and white circles appearing on a grid, and your task is to remember the ORDER and location in which the circles occur. ",
         "There will be circles on the initial screen, and it will be shown for 5 seconds.",
         "Then, you will see several circles (the number of circles range from 4-10) appear on the screen, one at a time. Click next to see the first circle. ",
         "The first circle you see will always be a black circle. Click next to see the next circle, which will be white.",
@@ -397,7 +399,7 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "You will receive a feedback on your choice. ",
         "The feedback will be displayed for 1 sec, and then the next equation will show up. ",
         "After the 14 seconds of mental arithmetic, the initial screen will show up again. ",
-        "Your task is to recreate the occurrence of the 4-10 circles that you saw on the screen, in the order and location they appeared, by clicking on the location where they occurred the grid. Your accuracies will be determined by whether you place the pieces in the right locations in the RIGHT ORDER. Please don't use any external aids (e.g., taking notes, screenshot, screen recordings, etc.), as we are only interested in your memory. ",
+        "Your task is to recreate the occurrence of the 4-10 circles that you saw on the screen, in the location and ORDER they appeared, by clicking on the location where they occurred the grid. Your accuracies will be determined by whether you place the circles in the right locations in the RIGHT ORDER. Please don't use any external aids (e.g., taking notes, screenshot, screen recordings, etc.), as we are only interested in your memory. ",
         "In the first circle, You can move your mouse to where you think the first circle appear, and click there",
         "Place the second circle. Note that a mistake was made here. You can click the Undo button to remove the circle just placed. (You won't be notified that you made a mistake)",
         "The wrong circle has been removed. You can only remove one circle after placing one. ",
@@ -408,6 +410,7 @@ function initialize_task(_num_games,_num_practice_games,callback){
     ]
 
     instructions_urls = ["",
+        "",
         "initial",
         "",
         "m1",
