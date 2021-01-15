@@ -249,7 +249,7 @@ function end_game(game_num){
 }
 
 
-function goFullscreen() {
+function psitscreen() {
     let element = document.body;
     let requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
 
