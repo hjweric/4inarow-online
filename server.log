@@ -294,3 +294,170 @@ WHERE "4inarow".workerid = %(workerid_1)s AND "4inarow".assignmentid = %(assignm
 [parameters: {'assignmentid_1': u'noas', 'workerid_1': u'debug'}]
 (Background on this error at: http://sqlalche.me/e/13/e3q8)
 2020-12-11 11:15:42,130 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debu'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 10:38:21,584 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 10:49:22,445 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 10:52:02,080 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 11:15:44,051 Exception on /exp [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2317, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1840, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1743, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1838, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1824, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/huangjiawen/.local/lib/python2.7/site-packages/psiturk/user_utils.py", line 23, in new_func
+    resp = make_response(func(*args, **kwargs))
+  File "/home/huangjiawen/.local/lib/python2.7/site-packages/psiturk/experiment.py", line 418, in start_exp
+    filter(Participant.assignmentid == assignment_id).\
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3373, in all
+    return list(self)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3535, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3560, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1130, in _execute_clauseelement
+    distilled_params,
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+OperationalError: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: SELECT "4inarow".uniqueid AS "4inarow_uniqueid", "4inarow".assignmentid AS "4inarow_assignmentid", "4inarow".workerid AS "4inarow_workerid", "4inarow".hitid AS "4inarow_hitid", "4inarow".ipaddress AS "4inarow_ipaddress", "4inarow".browser AS "4inarow_browser", "4inarow".platform AS "4inarow_platform", "4inarow".language AS "4inarow_language", "4inarow".cond AS "4inarow_cond", "4inarow".counterbalance AS "4inarow_counterbalance", "4inarow".codeversion AS "4inarow_codeversion", "4inarow".beginhit AS "4inarow_beginhit", "4inarow".beginexp AS "4inarow_beginexp", "4inarow".endhit AS "4inarow_endhit", "4inarow".bonus AS "4inarow_bonus", "4inarow".status AS "4inarow_status", "4inarow".mode AS "4inarow_mode", "4inarow".datastring AS "4inarow_datastring" 
+FROM "4inarow" 
+WHERE "4inarow".workerid = %(workerid_1)s AND "4inarow".assignmentid = %(assignmentid_1)s]
+[parameters: {'assignmentid_1': u'noas', 'workerid_1': u'debug'}]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+2021-01-19 11:15:47,735 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 13:54:23,838 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 13:56:02,042 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 13:58:45,444 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 13:59:29,231 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 14:00:06,685 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 14:03:36,325 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 14:05:51,446 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 14:05:53,996 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debu'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+[2021-01-19 14:06:33 +0000] [9541] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:06:33 +0000] [9541] [ERROR] Retrying in 1 second.
+[2021-01-19 14:06:34 +0000] [9541] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:06:34 +0000] [9541] [ERROR] Retrying in 1 second.
+[2021-01-19 14:06:35 +0000] [9541] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:06:35 +0000] [9541] [ERROR] Retrying in 1 second.
+[2021-01-19 14:06:36 +0000] [9541] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:06:36 +0000] [9541] [ERROR] Retrying in 1 second.
+[2021-01-19 14:06:37 +0000] [9541] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:06:37 +0000] [9541] [ERROR] Retrying in 1 second.
+[2021-01-19 14:06:38 +0000] [9541] [ERROR] Can't connect to ('0.0.0.0', 22362)
+[2021-01-19 14:06:42 +0000] [9564] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:06:42 +0000] [9564] [ERROR] Retrying in 1 second.
+[2021-01-19 14:06:43 +0000] [9564] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:06:43 +0000] [9564] [ERROR] Retrying in 1 second.
+[2021-01-19 14:06:44 +0000] [9564] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:06:44 +0000] [9564] [ERROR] Retrying in 1 second.
+[2021-01-19 14:06:45 +0000] [9564] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:06:45 +0000] [9564] [ERROR] Retrying in 1 second.
+[2021-01-19 14:06:46 +0000] [9564] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:06:46 +0000] [9564] [ERROR] Retrying in 1 second.
+[2021-01-19 14:06:47 +0000] [9564] [ERROR] Can't connect to ('0.0.0.0', 22362)
+[2021-01-19 14:07:26 +0000] [9595] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:07:26 +0000] [9595] [ERROR] Retrying in 1 second.
+[2021-01-19 14:07:27 +0000] [9595] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:07:27 +0000] [9595] [ERROR] Retrying in 1 second.
+[2021-01-19 14:07:28 +0000] [9595] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:07:28 +0000] [9595] [ERROR] Retrying in 1 second.
+[2021-01-19 14:07:29 +0000] [9595] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:07:29 +0000] [9595] [ERROR] Retrying in 1 second.
+[2021-01-19 14:07:30 +0000] [9595] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:07:30 +0000] [9595] [ERROR] Retrying in 1 second.
+[2021-01-19 14:07:31 +0000] [9595] [ERROR] Can't connect to ('0.0.0.0', 22362)
+[2021-01-19 14:08:19 +0000] [9643] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:08:19 +0000] [9643] [ERROR] Retrying in 1 second.
+[2021-01-19 14:08:20 +0000] [9643] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:08:20 +0000] [9643] [ERROR] Retrying in 1 second.
+[2021-01-19 14:08:21 +0000] [9643] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:08:21 +0000] [9643] [ERROR] Retrying in 1 second.
+[2021-01-19 14:08:22 +0000] [9643] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:08:22 +0000] [9643] [ERROR] Retrying in 1 second.
+[2021-01-19 14:08:23 +0000] [9643] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:08:23 +0000] [9643] [ERROR] Retrying in 1 second.
+[2021-01-19 14:08:24 +0000] [9643] [ERROR] Can't connect to ('0.0.0.0', 22362)
+[2021-01-19 14:08:51 +0000] [9710] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:08:51 +0000] [9710] [ERROR] Retrying in 1 second.
+[2021-01-19 14:08:52 +0000] [9710] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:08:52 +0000] [9710] [ERROR] Retrying in 1 second.
+[2021-01-19 14:08:53 +0000] [9710] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:08:53 +0000] [9710] [ERROR] Retrying in 1 second.
+[2021-01-19 14:08:54 +0000] [9710] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:08:54 +0000] [9710] [ERROR] Retrying in 1 second.
+[2021-01-19 14:08:55 +0000] [9710] [ERROR] Connection in use: ('0.0.0.0', 22362)
+[2021-01-19 14:08:55 +0000] [9710] [ERROR] Retrying in 1 second.
+[2021-01-19 14:08:56 +0000] [9710] [ERROR] Can't connect to ('0.0.0.0', 22362)
+[2021-01-19 14:09:37 +0000] [9499] [CRITICAL] WORKER TIMEOUT (pid:9503)
+2021-01-19 14:10:31,560 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 14:11:15,166 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 14:12:21,778 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 14:22:33,790 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 14:51:34,699 Exception on /exp [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2317, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1840, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1743, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1838, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1824, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/huangjiawen/.local/lib/python2.7/site-packages/psiturk/user_utils.py", line 23, in new_func
+    resp = make_response(func(*args, **kwargs))
+  File "/home/huangjiawen/.local/lib/python2.7/site-packages/psiturk/experiment.py", line 418, in start_exp
+    filter(Participant.assignmentid == assignment_id).\
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3373, in all
+    return list(self)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3535, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3560, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1130, in _execute_clauseelement
+    distilled_params,
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+OperationalError: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: SELECT "4inarow".uniqueid AS "4inarow_uniqueid", "4inarow".assignmentid AS "4inarow_assignmentid", "4inarow".workerid AS "4inarow_workerid", "4inarow".hitid AS "4inarow_hitid", "4inarow".ipaddress AS "4inarow_ipaddress", "4inarow".browser AS "4inarow_browser", "4inarow".platform AS "4inarow_platform", "4inarow".language AS "4inarow_language", "4inarow".cond AS "4inarow_cond", "4inarow".counterbalance AS "4inarow_counterbalance", "4inarow".codeversion AS "4inarow_codeversion", "4inarow".beginhit AS "4inarow_beginhit", "4inarow".beginexp AS "4inarow_beginexp", "4inarow".endhit AS "4inarow_endhit", "4inarow".bonus AS "4inarow_bonus", "4inarow".status AS "4inarow_status", "4inarow".mode AS "4inarow_mode", "4inarow".datastring AS "4inarow_datastring" 
+FROM "4inarow" 
+WHERE "4inarow".workerid = %(workerid_1)s AND "4inarow".assignmentid = %(assignmentid_1)s]
+[parameters: {'assignmentid_1': u'noas', 'workerid_1': u'de'}]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+2021-01-19 14:51:40,241 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 15:01:41,706 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 15:07:57,745 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 15:09:05,204 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
+2021-01-19 15:24:30,665 already_started_exp (1008) {'assignmentId': [u'noas'], 'workerId': [u'debug'], 'hitId': [u'nohit'], 'mode': [u'debug']}
