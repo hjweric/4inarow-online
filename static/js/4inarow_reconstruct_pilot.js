@@ -1,4 +1,5 @@
-var b,bp,wp,user_color,m,num_games,num_practice_games, current_color, gi,mi, current_move, player_save,gi_save,mi_save, steps, move_left,correction_index, equation
+var b,bp,wp,user_color,m,num_games,num_practice_games, current_color, gi,mi, current_move, player_save,gi_save,mi_save, steps, move_left,correction_index, equation,current_step
+var bp_end, wp_end
 var total_steps, level
 var tiles = [];
 var game_status = "ready"
@@ -16,8 +17,21 @@ var lastresult = "win"
 var task_type
 var game_data = {}
 var feedback_text="Instructions",     seconds_remain = 6
+var correct_moves=[], participant_moves=[]
 
+function goFullscreen() {
+    let element = document.body;
+    let requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
 
+    if (requestMethod) { // Native full screen.
+        requestMethod.call(element);
+    } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+        var wscript = new ActiveXObject("WScript.Shell");
+        if (wscript !== null) {
+            wscript.SendKeys("{F11}");
+        }
+    }
+}
 
 function load_game_data(filename){
     $.getJSON(filename, function(response) {
@@ -48,6 +62,7 @@ function reconstruction_all(game_num){
     load_game_start(game_num)
     mi = 0
     steps = game_data[task_type][game_num-correction_index].length
+    current_step=steps
     $('.headertext h1').show().text('This sequence has ' + steps.toString() + ' steps').css('color', '#000000');
 
     log_data({"steps":steps, "bs":bp_start,"ws":wp_start})
@@ -67,7 +82,7 @@ function play_next_move(game_num){
         add_piece(move,color);
         show_last_move(move, color);
         log_data({"event_type": "one move played", "event_info" : {"move_color" : color, "move_index" : move,"bp" : bp.join(""), "wp": wp.join(""), "game_num": game_num}})
-
+        correct_moves.push(move)
         mi++
         timer = setTimeout(
             function(){
@@ -129,6 +144,7 @@ function add_piece(i, color) {
 }
 
 function remove_piece(i){
+    participant_moves.pop()
     $("#tile_" + i.toString()).empty().removeClass("usedTile").addClass("tile").off().css("backgroundColor", square_color);
     bp[i]=0
     wp[i]=0
@@ -145,20 +161,28 @@ function show_last_move(i, color) {
     }
 }
 
-function withdraw_previous_move(game_num,tile_ind){
-    remove_piece(tile_ind)
-    log_data({"event_type": "withdrawn", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string, "game_num": game_num}})
 
-    user_move(game_num)
+function check_correct(game_num,move){
+    if (move == game_data[task_type][game_num-correction_index][steps-current_step][3]){
+        $('.clickprompt').show().text('Correct')
+    }
+    else {
+        $('.clickprompt').show().text('Incorrect, please undo and try again.')
+    }
+}
+
+function check_acc(){
+    if (participant_moves.join("")!=correct_moves.join("")){
+        $("#endofexperimentbutton").show()
+    }
 }
 
 function user_move(game_num) {
-    $('.clickprompt').show()
     if (bp.filter(x => x==1).length == wp.filter(x => x==1).length){
         current_color = 0}
     else {current_color = 1}
     color_string = (current_color == 0 ? 'black' : 'white')
-    steps_string = steps.toString()
+    steps_string = current_step.toString()
     log_data({"event_type": "your turn", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string, "game_num": game_num}})
     $('.headertext h1').show().text('You now place ' + color_string + " piece. " + steps_string +" steps left.");
     $('.canvas, .tile').css('cursor', 'pointer');
@@ -175,34 +199,38 @@ function user_move(game_num) {
         log_data({"event_type": "user move", "event_info" : {"tile" : tile_ind, "bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string,  "game_num": game_num}})
         add_piece(tile_ind,current_color);
         show_last_move(tile_ind, current_color);
+        participant_moves.push(tile_ind)
         dismissed_click_prompt = true;
-        //winning_pieces = check_win(user_color)    // DON'T WANT TO SHOW WIN ANY POINT IN THE GAME
+
+        if(task_type=='practice'){
+            check_correct(game_num,tile_ind)
+        }
+        current_step--
+
+        $("#withdrawbutton").show().css({"display" :"inline"}).off("click").on("click",function(){
+            $("#endgamebutton").hide()
+            $(".clickprompt").show().text("Please click where you want to add a circle.")
+            log_data({"event_type": "withdrawn", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string, "game_num": game_num}})
+            $("#withdrawbutton").hide();
+            current_step++
+            remove_piece(tile_ind)
+            user_move(game_num)
+        })
         if (bp.filter(x => x==1).length + wp.filter(x => x==1).length == total_steps){
-            //show_win(current_color,winning_pieces)
             log_data({"event_type": "reconstruction over", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "game_num":game_num}})
             $('.headertext h1').text('Reconstruction over').css('color', '#000000');
-            $('.clickprompt').hide()
-            $("#withdrawbutton").hide()
-            end_game(game_num)
+            $("#endgamebutton").show().css({"display" :"inline"}).off("click").on("click",function(){
+                $("#endgamebutton").hide()
+                $('#withdrawbutton').hide()
+                end_game(game_num)})
+
         }
         else {
-            steps--
-            $("#withdrawbutton").show().css({"display" :"inline"}).off("click").on("click",function(){
-                log_data({"event_type": "withdrawn", "event_info" : {"bp" : bp.join(""), "wp": wp.join(""), "user_color" : color_string, "game_num": game_num}})
-                $("#withdrawbutton").hide();
-                steps++
-                remove_piece(tile_ind)
-                user_move(game_num)
-            })
             user_move(game_num)}
     });
 }
 
-function check_all_reconstructed(total_steps){
-    return bp.filter(x => x==1).length + wp.filter(x => x==1).length == total_steps;
-}
 function start_game(game_num){
-
     log_data({"event_type": "start game", "event_info" : {"game_num" : game_num}})
     instructions_text = "Instruction"
     if(game_num<num_practice_games){
@@ -220,7 +248,9 @@ function start_game(game_num){
 }
 
 
+
 function end_game(game_num){
+    $('.clickprompt').hide()
     log_data({"event_type": "end game", "event_info" : {"game_num" : game_num, "level" : level}})
     //adjust_level(result)
     $("#nextgamebutton").show().css({"display" :"inline"}).off("click").on("click",function(){
@@ -340,6 +370,7 @@ function show_feedback_and_move_on(game_num) {
     },1000)
 }
 function show_instructions(i,texts,urls,callback,start_text){
+    goFullscreen()
     log_data({"event_type": "show instructions", "event_info" : {"screen_number": i}})
     category = start_category
     $('#truebutton').hide()
@@ -388,14 +419,14 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "In the 4-in-a-row game, two players play black or white pieces on a game board.",
         "The aim of the game is to get four pieces of the player's color in a row.",
         "The player can win by putting four pieces in a row in any directions.",
-        "The memory task is drawn from the real data of the game. You will firstly see the initial board state for 5 seconds.",
+        "The memory task is drawn from the real data of the game. Your task is to remember the ORDER and LOCATION in which the pieces occur. You will firstly see the initial board state for 5 seconds.",
         "Then, you will see pieces (the number ranges from 4-10) appear on the screen, one at a time. Click next to see the first piece. ",
         "The first piece you see will always be a black piece. Click next to see the next piece, which will be white.",
         "Click next to see the next piece, which will be black.",
         "Click next to see the next piece, which will be white.",
         "That's all the pieces for this demonstration." ,
         "In the real experiment, a circle will be added automatically every 5 seconds.",
-        "After seeing all the circles, you will need to complete as many mental arithmetic tasks as possible for 14 seconds. You have up to 6 sec for each question. ",
+        "After memorizing the sequence of circles, you will be asked to complete a series of mental arithmetic tasks for 14 seconds. You will have up to 6 seconds for each question.  ",
         "You need to decide if the equation is true or false. A timer will show you the time you have left",
         "You will receive a feedback on your choice. ",
         "The feedback will be displayed for 1 sec, and then the next equation will show up. ",
@@ -407,7 +438,9 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "You can then place the second circle. ",
         "Repeat the process for the third circle",
         "Repeat the process for the fourth circle",
-        "You will now play " + _num_practice_games.toString() + " practice games. Click start to begin."
+        "You will now play " + _num_practice_games.toString() + " practice games. In the practice games ONLY, you will be provided feedback on each circle you placed (It will be on the top of the page). You should aim to be 100% accurate in the practice games.",
+        "If you made a mistake, you can click undo to cancel the most recent move you made. However, note that you can only undo your most recent move. So check very carefully that each circle you placed is correct before placing the next circle. We might reject you if you were not 100% accurate in the practice. ",
+        "Click start to begin the practice sessions. "
     ]
 
     instructions_urls = ["",
@@ -433,8 +466,8 @@ function initialize_task(_num_games,_num_practice_games,callback){
         "m2_re",
         "m3_re",
         "m4_re",
-        "" +
-        "" +
+        "" ,
+        "" ,
         "" ]
     instructions_text_after_practice = ["You will now do " + num_games.toString() + " runs of the  task."]
     instructions_urls_after_practice = [""]
