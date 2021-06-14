@@ -38,8 +38,8 @@ $(window).on('load', function() {
 	return saveData()
 		.then(function() {
 			return setTimeout(function(){
-				initialize_task(28,2,function(){
-				load_game_data("https://raw.githubusercontent.com/hjweric/fourinarow/master/data/formal_stimuli_s2.json");
+				initialize_task(30,2,function(){
+				load_game_data("https://raw.githubusercontent.com/hjweric/fourinarow/master/data/s2stimuli.json");
 				})
 			},100);
 		}).catch(handleError);
